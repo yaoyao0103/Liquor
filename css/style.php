@@ -37,8 +37,7 @@ body:before {
   
 /*header背景設定*/
 .header-dark {
-	background:url('http://img1.tcdachun.com/141027/330566-14102G12Q79.jpg') #444;
-	background-position: top;
+	background:url('https://img.itw01.com/images/2019/01/25/14/3316_Iah91m_YS5DREG.jpg!r800x0.jpg') #444;
 	background-size:cover;
 	padding-bottom:80px;
   }

@@ -1,7 +1,7 @@
 <?php
     $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
     mysqli_set_charset($conn,"utf8");
-    $query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Cocktail'");
+    $query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Highball'");
     $numrows = mysqli_num_rows($query); // number of result
     if($numrows >=1){
         echo "<div class=\"wrapper\" id = \"all_card\">";
