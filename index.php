@@ -35,8 +35,8 @@
                 <div class='header-dark'>";
 
             include_once 'navigation.php';
-            include_once 'ex_cards.php';
-                
+            //include_once 'ex_cards.php';
+            include_once 'generateCards.php';
             echo  
                 "</div>
             </div>";
