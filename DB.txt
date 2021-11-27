@@ -1,0 +1,5 @@
+be18b79a8458a8
+350744db
+us-cdbr-east-04.cleardb.com
+
+mysql://be18b79a8458a8:350744db@us-cdbr-east-04.cleardb.com/heroku_54df87b96adc2fd?reconnect=true
