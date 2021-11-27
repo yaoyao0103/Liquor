@@ -65,7 +65,7 @@
                                             if($numrows == 1){ // have one result
 
                                                 // send verification code by mail
-                                                $site = "https://localhost/my_liquor";
+                                                $site = "https://liquor-project.herokuapp.com";
                                                 $webmaster = "admin@yao.com";
                                                 $headers = "From: $webmaster";
                                                 $subject = "Activate Your Account";

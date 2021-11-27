@@ -21,45 +21,100 @@
 
 <body>
     <?php
-        if($userID && $username){ // already logged in
-            if($isAdmin){ // is administrator
-                header("Location: admin.php");
-            }
-            else{ // is not administrator
-                header("Location: member.php");
+        if(!$username && !$userId){ // not logged in
+            if($_POST['resetBtn']){ // get form from resetBtn
+                //get form info
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+
+                //make sure info provided
+                if($username){
+                    if($email){
+                        $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
+                        $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'"); // query for matching username
+                        $numrows = mysqli_num_rows($query); // number of result
+                        if($numrows == 1){ // have one result
+                            // get info about account
+                            $row = mysqli_fetch_assoc($query);
+                            $dbEmail = $row['email'];
+                            
+                            // make sure the email is correct
+                            if($email == $dbEmail){
+                                // generate password
+                                $password = rand(); // random password
+                                $password = md5($password); // encryption
+                                $password = substr($password, 0, 15); // cut to length 15
+
+                                // update db with new password
+                                mysqli_query($conn, "UPDATE users SET password='$password' WHERE username='$username'");
+                                
+                                // make sure the password was changed
+                                $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'"); // query for matching username and password
+                                $numrows = mysqli_num_rows($query); // number of result
+                                if($numrows == 1){ // have one result
+
+                                    // send new password by mail
+                                    $webmaster = "admin@yao.com";
+                                    $headers = "From: yao<$webmaster>";
+                                    $subject = "Your New Password";
+                                    $message = "Hello. Your password has been reset. Your new password is below.\n";
+                                    $message .= "Password: $pass\n"; 
+                                    if(mail($email, $subject, $message, $headers)){ // mail successfully
+                                        $errormsg = "Your password has been reset. An email has been sent with your new password.";
+                                    }
+                                    else{
+                                        $errormsg = "An error has ocurred and your email was not sent containing your new password.";
+                                    }
+                                }
+                                else
+                                    $errormsg = "An error has ocurred and the password was not reset.";
+
+                            }
+                            else   
+                                $errormsg = "You enter the wrong email address.";
+                        }
+                        else
+                            $errormsg = "The username was not found.";
+                    }
+                    else
+                        $errormsg = "Please enter your email.";
+
+                }
+                else
+                    $errormsg = "Please enter your username.";
             }
         }
-        else{ // not logged in
-            echo
-            "<div>
-                <div class='header-dark'>";
+        else
+            $errormsg = "";
+        echo
+        "<div>
+            <div class='header-dark'>";
 
-            include_once 'navigation.php';
+        include_once 'navigation.php';
 
-            // form
-            echo
-            "<div class='userInfo-wrap'>
-                <div class='userInfo-html'>
-                    <div class='userInfo-form'>
-                        <form class='forgot-Password-htm' method='post' action='./forgotPassword.php'>
-                            <div class='group'>
-                                <label for='user' class='label'>Username</label>
-                                <input id='user' type='text' class='input' name='username'>
-                            </div>
-                            <div class='group'>
-                                <label for='email' class='label'>Email Address</label>
-                                <input id='email' type='text' class='input' name='email'>
-                            </div>
-                            <div class='group top-space'>
-                                <input type='submit' class='button' value='Reset Password' name='resetBtn'>
-                            </div>
-                        </form>
-                    </div>
-                </div>";
-            echo  
-                "</div>
+        // form
+        echo
+        "<div class='userInfo-wrap'>
+            <div class='userInfo-html'>
+                <div class='userInfo-form'>
+                    <form class='forgot-Password-htm' method='post' action='./forgotPassword.php'>
+                        <div class='group'>
+                            <label for='user' class='label'>Username</label>
+                            <input id='user' type='text' class='input' name='username'>
+                        </div>
+                        <div class='group'>
+                            <label for='email' class='label'>Email Address</label>
+                            <input id='email' type='text' class='input' name='email'>
+                        </div>
+                        <div class='group top-space'>
+                            <input type='submit' class='button' value='Reset Password' name='resetBtn'>
+                        </div>
+                    </form>
+                </div>
             </div>";
-        }
+        echo  
+            "</div>
+        </div>";
     ?>
     
     
