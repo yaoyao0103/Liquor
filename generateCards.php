@@ -24,12 +24,13 @@
     $numrows = mysqli_num_rows($liquor_result); // number of result
     if($numrows >=1){
         echo "<div class=\"wrapper\" id = \"all_card\">";
+        echo "1";
         while ($liquor = mysqli_fetch_array($liquor_result, MYSQLI_ASSOC)) {
             $cname = $liquor['cname'];
             $ename = $liquor['ename'];
             $id = $liquor['id'];
             $photoURL = $liquor['photoURL'];
-
+            echo "2";
             /*$chars = str_split($ename);
             $tempename = array();
             foreach ($chars as $char) {
@@ -43,21 +44,21 @@
             //get ingredients
             $sql = "select * from ingredient where liquor_id = $id";
             $ingredients = mysqli_query($conn, $sql);
-
+            echo "3";
             $tempIngredient = [];
             while($row = mysqli_fetch_assoc($ingredients))
                 $tempIngredient[] = $row; 
             $ingredientsJSON = json_encode($tempIngredient);
-
+            echo "4";
             //get tags
             $sql = "select * from tag where liquor_id = $id";
             $tags = mysqli_query($conn, $sql);
-
+            echo "5";
             $tempTag = [];
             while($row = mysqli_fetch_assoc($tags))
                 $tempTag[] = $row; 
             $tagsJSON = json_encode($tempTag);
-            
+            echo "6";
             
             $liquorJSON = json_encode($liquor);
             $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL)\"> 
@@ -82,26 +83,28 @@
                 </div> 
                 </div> 
             </div>";
-
+            echo "7";
             $cnameArray = mb_str_split($cname);
             echo $content_front;
             foreach($cnameArray as $char){
                 echo "<span><span>$char</span><span>$char</span></span>";
             }
             echo $content_back;
+            echo "8";
         }
         $sql = "select * from liquors";
         $liquor_result = mysqli_query($conn, $sql);
         $total_records = mysqli_num_rows($liquor_result); // 總資料筆數
         $total_pages = ceil($total_records/$num_per_page); // 總頁數
 
-        
+        echo "9";
         echo "<div class = 'page_btn_div'>";
         if($page != 1) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
         
         for($i = 1; $i <= $total_pages; $i++){
             echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=$i'\">".$i."</button>" ; //切換頁數button
         }
+        echo "10";
         if($page != $total_pages) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
         echo "</div>";
         echo "</div>";
