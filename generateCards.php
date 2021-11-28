@@ -1,5 +1,5 @@
 <?php
-
+    header('Content-Type: application/json');
     //connect to DB
     $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
     mysqli_set_charset($conn,"utf8");
@@ -24,13 +24,45 @@
     $numrows = mysqli_num_rows($liquor_result); // number of result
     if($numrows >=1){
         echo "<div class=\"wrapper\" id = \"all_card\">";
-        foreach($liquor_result as $liquor){
+        while ($liquor = mysqli_fetch_array($liquor_result, MYSQLI_ASSOC)) {
             $cname = $liquor['cname'];
             $ename = $liquor['ename'];
+            $id = $liquor['id'];
             $photoURL = $liquor['photoURL'];
+
+            /*$chars = str_split($ename);
+            $tempename = array();
+            foreach ($chars as $char) {
+                if($char == '\''){
+                    array_push($tempename, "\\");
+                }
+                array_push($tempename, $char);
+            }
+            $ename = join("", $tempename);*/
+
+            //get ingredients
+            $sql = "select * from ingredient where liquor_id = $id";
+            $ingredients = mysqli_query($conn, $sql);
+
+            $tempIngredient = [];
+            while($row = mysqli_fetch_assoc($ingredients))
+                $tempIngredient[] = $row; 
+            $ingredientsJSON = json_encode($tempIngredient);
+
+            //get tags
+            $sql = "select * from tag where liquor_id = $id";
+            $tags = mysqli_query($conn, $sql);
+
+            $tempTag = [];
+            while($row = mysqli_fetch_assoc($tags))
+                $tempTag[] = $row; 
+            $tagsJSON = json_encode($tempTag);
+            
+            
+            $liquorJSON = json_encode($liquor);
             $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL)\"> 
             <div class=\"card_content\"> 
-                <a class=\"play-button\"> 
+                <a href='#' onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON)' class=\"play-button\"> 
                 <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 50 50\"> 
                     <path d=\"M42.7,42.7L25,50L7.3,42.7L0,25L7.3,7.3L25,0l17.7,7.3L50,25L42.7,42.7z\" class=\"polygon\"></path> 
                     <polygon points=\"27.5,9 27.5,19 30,21 30,41 20,41 20,21 22.5,19 22.5,9\"></polygon> 
@@ -50,6 +82,7 @@
                 </div> 
                 </div> 
             </div>";
+
             $cnameArray = mb_str_split($cname);
             echo $content_front;
             foreach($cnameArray as $char){
@@ -71,6 +104,10 @@
         }
         if($page != $total_pages) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
         echo "</div>";
+        echo "</div>";
+
+        
+
     }
     else{
         echo "no result";

@@ -35,18 +35,60 @@
         else{ // not logged in
             echo
             "<div>
-                <div class='header-dark'>";
+                <div class='header-dark' id='blur'>";
 
             include_once 'navigation.php';
             //include_once 'ex_cards.php';
             include_once 'generateCards.php';
-            echo  
-                "</div>
+            $popup_html =
+            "<div id='popup'>
+                <div class = 'popup_img'>
+                    <img id = 'popup_img'>
+                </div>
+                <div class = 'popup_content'>
+                    <div id = 'popup_cname'></div>
+                    <div id = 'popup_ename'></div>
+                    <div id = 'popup_ingredients'></div>
+                    <div id = 'popup_detail'></div>
+                    <div id = 'popup_tags'></div>
+                    <div id = 'popup_btn'><a href='#' onclick = 'toggle()'>Close</a></div>
+                </div>
             </div>";
+            echo  
+                "</div>".
+                $popup_html.
+            "</div>";
         }
     ?>
     
     
+    <script>
+        function toggle(liquor, ingredients, tags){
+            /*console.log(ename);
+            console.log(ingredients);
+            console.log(tags);*/
+            let blur = document.getElementById('blur');
+            blur.classList.toggle('active');
+            let popup = document.getElementById('popup');
+            popup.classList.toggle('active');
+            document.getElementById('popup_cname').innerHTML = liquor.cname;
+            document.getElementById('popup_ename').innerHTML = liquor.ename;
+            let ingredientStr = "<ul>";
+            for(let row of ingredients){
+                ingredientStr += "<li>"+ row.name + ": " + row.volume;
+            }
+            ingredientStr += "</ul>";
+            let tagStr = "";
+            for(let tag of tags){
+                tagStr += "<a href = '#'>" + tag.tag_name + "</a>"
+            }
+            document.getElementById('popup_ingredients').innerHTML = ingredientStr;
+            document.getElementById('popup_detail').innerHTML = liquor.detail;
+            document.getElementById('popup_tags').innerHTML = "Tags: " + tagStr;
+            document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
+        }
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="js/tilt.js"></script>
