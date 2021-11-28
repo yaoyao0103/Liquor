@@ -1,11 +1,30 @@
 <?php
+
+    //connect to DB
     $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
     mysqli_set_charset($conn,"utf8");
-    $query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Highball'");
-    $numrows = mysqli_num_rows($query); // number of result
+
+    $num_per_page = 12; // total item per page
+
+    if(isset($_GET['page'])) // already set the page
+    {
+        $page = $_GET['page'];
+    }
+    else{
+        $page = 1; // default page = 1
+    }
+
+    $start_form = ($page-1)*$num_per_page; // the start row of liquors table
+
+    
+    $sql = "select * from liquors limit $start_form, $num_per_page"; // sql
+    $liquor_result = mysqli_query($conn, $sql); // get result
+
+    //$query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Highball'");
+    $numrows = mysqli_num_rows($liquor_result); // number of result
     if($numrows >=1){
         echo "<div class=\"wrapper\" id = \"all_card\">";
-        foreach($query as $liquor){
+        foreach($liquor_result as $liquor){
             $cname = $liquor['cname'];
             $ename = $liquor['ename'];
             $photoURL = $liquor['photoURL'];
@@ -38,6 +57,19 @@
             }
             echo $content_back;
         }
+        $sql = "select * from liquors";
+        $liquor_result = mysqli_query($conn, $sql);
+        $total_records = mysqli_num_rows($liquor_result); // 總資料筆數
+        $total_pages = ceil($total_records/$num_per_page); // 總頁數
+
+        
+        echo "<div class = 'page_btn_div'>";
+        if($page != 1) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
+        
+        for($i = 1; $i <= $total_pages; $i++){
+            echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=$i'\">".$i."</button>" ; //切換頁數button
+        }
+        if($page != $total_pages) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
         echo "</div>";
     }
     else{

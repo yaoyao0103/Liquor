@@ -37,7 +37,8 @@ body:before {
   
 /*header背景設定*/
 .header-dark {
-	background:url('https://img.itw01.com/images/2019/01/25/14/3316_Iah91m_YS5DREG.jpg!r800x0.jpg') #444;
+	background:url('background.jpg') black;
+	//background: black;
 	background-size:cover;
 	padding-bottom:80px;
   }
@@ -412,6 +413,27 @@ transform: translateY(0);
 transform: translateX(0);
 }
 
+.page_btn_div {
+	width: 800px;
+	margin:0 auto
+}
+
+.page_btn{
+	background: black;
+	color:white;
+	width: 35px;
+	border: 0.1px solid #4F4F4F;
+	margin-left: 0.8px;
+  	border-radius: 5px;
+}
+
+.page_btn:hover{
+	background: white;
+	color: #743A3A;
+	transition: 0.15s;
+}
+
+
 
 /*------------------------------------------------------*/
 
@@ -516,3 +538,4 @@ transform: translateX(0);
 .foot-lnk a{
 	color: white;
 }
+

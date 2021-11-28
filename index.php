@@ -1,9 +1,12 @@
 <?php
     error_reporting(0);
+
+    //session get
     session_start();
     $userId = $_SESSION['userId'];
     $username = $_SESSION['username'];
     $isAdmin = $_SESSION['isAdmin'];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +38,8 @@
                 <div class='header-dark'>";
 
             include_once 'navigation.php';
-            include_once 'ex_cards.php';
-            //include_once 'generateCards.php';
+            //include_once 'ex_cards.php';
+            include_once 'generateCards.php';
             echo  
                 "</div>
             </div>";
