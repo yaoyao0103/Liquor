@@ -78,6 +78,8 @@
                 </div> 
             </div>";
             echo "1";
+            echo $cname;
+            echo mb_str_split($cname);
             $cnameArray = mb_str_split($cname);
             echo "2";
             echo $content_front;
