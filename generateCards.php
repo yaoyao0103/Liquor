@@ -108,6 +108,7 @@
         if($page != $total_pages) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
         echo "</div>";
         echo "</div>";
+        echo "11";
 
         
 
