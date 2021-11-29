@@ -86,6 +86,7 @@
             document.getElementById('popup_detail').innerHTML = liquor.detail;
             document.getElementById('popup_tags').innerHTML = "Tags: " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
+
         }
     </script>
 
