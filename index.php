@@ -1,5 +1,6 @@
 <?php
     error_reporting(0);
+    require('functions.php');
 
     //session get
     session_start();
@@ -39,7 +40,15 @@
 
             include_once 'navigation.php';
             //include_once 'ex_cards.php';
-            include_once 'generateCards.php';
+            if($_GET['tag']){ // show by tags
+                $tag = $_GET['tag'];
+                $sql = "select L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
+            }
+            else{ // show all card
+                $sql = "select * from liquors"; 
+                $tag = "";
+            }
+            generateCard($sql, $tag);
             $popup_html =
             "<div id='popup'>
                 <div class = 'popup_img'>

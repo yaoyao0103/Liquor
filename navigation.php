@@ -5,70 +5,70 @@
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Base</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <a class="dropdown-item" role="presentation" href="#">Vodka</a>
-                                    <a class="dropdown-item" role="presentation" href="#">Rum</a>
-                                    <a class="dropdown-item" role="presentation" href="#">Gin</a>
-                                    <a class="dropdown-item" role="presentation" href="#">Tequila</a>
-                                    <a class="dropdown-item" role="presentation" href="#">Tequila</a>
-                                    <a class="dropdown-item" role="presentation" href="#">Brandy</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Vodka">Vodka</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Rum">Rum</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Gin">Gin</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Whisk(e)y">Whisk(e)y</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Tequila">Tequila</a>
+                                    <a class="dropdown-item" role="presentation" href="index.php?tag=Brandy">Brandy</a>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown">
                               <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Type</a>
                               <ul class="dropdown-menu" role="menu">
-                                  <li><a class="dropdown-item" role="presentation" href="#">Cocktail</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Highball</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Sour</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Collins</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Buck</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Dessert</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Tiki's</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Duo</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Trio</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Fancy</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Frozen</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Sling</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Frappe</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Punch</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="#">Fizz</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Cocktail">Cocktail</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Highball">Highball</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Sour">Sour</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Collins">Collins</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Buck">Buck</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Dessert">Dessert</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Tiki's">Tiki's</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Duo">Duo</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Trio">Trio</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Fancy">Fancy</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Frozen">Frozen</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Sling">Sling</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Frappe">Frappe</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Punch">Punch</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Fizz">Fizz</a></li>
                               </ul>
                             </li>
 
                             <li class="nav-item dropdown">
                               <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Cup type</a>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a class="dropdown-item" role="presentation" href="#">Mojito Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Cocktail Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Collins Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Highball Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Old Fashioned Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Hurricane Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Champagne Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Margarita Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Champagne Glass</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Brandy Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Mojito Glass">Mojito Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Cocktail Glass">Cocktail Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Collins Glass">Collins Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Highball Glass">Highball Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Old Fashioned">Old Fashioned Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Hurricane Glass">Hurricane Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Champagne Glass">Champagne Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Margarita Glass">Margarita Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Champagne Glass">Champagne Glass</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Brandy Glass">Brandy Glass</a></li>
                               </ul>
                             </li>
 
                             <li class="nav-item dropdown">
                               <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Tuning</a>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a class="dropdown-item" role="presentation" href="#">Build</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Stir</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Shake</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Blend</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Roll</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Build">Build</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Stir">Stir</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Shake">Shake</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Blend">Blend</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Roll">Roll</a></li>
                               </ul>
                             </li>
 
                             <li class="nav-item dropdown">
                               <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Drinking method</a>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a class="dropdown-item" role="presentation" href="#">Straight</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">LongDrink</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">On the Rock</a></li>
-                                <li><a class="dropdown-item" role="presentation" href="#">Frozen</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Straight">Straight</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=LongDrink">LongDrink</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=On the Rock">On the Rock</a></li>
+                                <li><a class="dropdown-item" role="presentation" href="index.php?tag=Frozen">Frozen</a></li>
                               </ul>
                             </li>
                         </ul>

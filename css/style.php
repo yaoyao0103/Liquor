@@ -583,7 +583,7 @@ transform: translateX(0);
 }
 
 #popup_cname {
-	margin-left: 20px;
+	margin-left: 30px;
 	margin-right: 10px;
 	float: left;
 	color: #FFE66F;
