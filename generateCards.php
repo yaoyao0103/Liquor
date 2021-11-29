@@ -82,35 +82,26 @@
                 </div> 
             </div>";
             $cnameArray = mb_str_split($cname);
-            echo "2";
             echo $content_front;
-            echo "3";
             foreach($cnameArray as $char){
                 echo "<span><span>$char</span><span>$char</span></span>";
             }
-            echo "4";
             echo $content_back;
-            echo "5";
         }
         $sql = "select * from liquors";
         $liquor_result = mysqli_query($conn, $sql);
         $total_records = mysqli_num_rows($liquor_result); // 總資料筆數
         $total_pages = ceil($total_records/$num_per_page); // 總頁數
 
-        echo "6";
         echo "<div class = 'page_btn_div'>";
         if($page != 1) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
         
         for($i = 1; $i <= $total_pages; $i++){
             echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=$i'\">".$i."</button>" ; //切換頁數button
         }
-        echo "7";
         if($page != $total_pages) echo "<button class = 'page_btn' onclick=\"location.href='index.php?page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
         echo "</div>";
         echo "</div>";
-        echo "8";
-
-        
 
     }
     else{
