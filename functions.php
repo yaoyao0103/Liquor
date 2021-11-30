@@ -32,12 +32,13 @@
                 /*$chars = str_split($ename);
                 $tempename = array();
                 foreach ($chars as $char) {
-                    if($char == '\''){
-                        array_push($tempename, "\\");
+                    if($char == '\'' || $char == '\''){
+                        array_push($tempename, "-");
                     }
-                    array_push($tempename, $char);
+                    else array_push($tempename, $char);
                 }
-                $ename = join("", $tempename);*/
+                $liquor['ename'] = join("", $tempename);*/
+                $ename = str_replace("-","'",$ename);
 
                 //get ingredients
                 $ingredientSql = "select * from ingredient where liquor_id = $id";

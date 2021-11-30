@@ -60,7 +60,7 @@
                     <div id = 'popup_ingredients'></div>
                     <div id = 'popup_detail'></div>
                     <div id = 'popup_tags'></div>
-                    <div id = 'popup_btn'><a href='#' onclick = 'toggle()'>Close</a></div>
+                    <div id = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
                 </div>
             </div>";
             echo  
@@ -73,15 +73,12 @@
     
     <script>
         function toggle(liquor, ingredients, tags){
-            /*console.log(ename);
-            console.log(ingredients);
-            console.log(tags);*/
             let blur = document.getElementById('blur');
             blur.classList.toggle('active');
             let popup = document.getElementById('popup');
             popup.classList.toggle('active');
             document.getElementById('popup_cname').innerHTML = liquor.cname;
-            document.getElementById('popup_ename').innerHTML = liquor.ename;
+            document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
             let ingredientStr = "<ul>";
             for(let row of ingredients){
                 ingredientStr += "<li>"+ row.name + ": " + row.volume;
@@ -89,13 +86,19 @@
             ingredientStr += "</ul>";
             let tagStr = "";
             for(let tag of tags){
-                tagStr += "<a href = '#'>" + tag.tag_name + "</a>"
+                tagStr += "<a href = '#'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
             document.getElementById('popup_ingredients').innerHTML = ingredientStr;
             document.getElementById('popup_detail').innerHTML = liquor.detail;
             document.getElementById('popup_tags').innerHTML = "Tags: " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
+        }
 
+        function unToggle(){
+            let blur = document.getElementById('blur');
+            blur.classList.toggle('active');
+            let popup = document.getElementById('popup');
+            popup.classList.toggle('active');
         }
     </script>
 

@@ -23,7 +23,7 @@
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Collins">Collins</a></li>
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Buck">Buck</a></li>
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Dessert">Dessert</a></li>
-                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Tiki's">Tiki's</a></li>
+                                  <li><a class="dropdown-item" role="presentation" href="index.php?tag=Tiki-s">Tiki's</a></li>
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Duo">Duo</a></li>
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Trio">Trio</a></li>
                                   <li><a class="dropdown-item" role="presentation" href="index.php?tag=Fancy">Fancy</a></li>
