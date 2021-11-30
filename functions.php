@@ -1,8 +1,8 @@
 <?php
 
-    function mb_str_split($str){  
+    /*function mb_str_split($str){  
         return preg_split('/(?<!^)(?!$)/u', $str );  
-    }
+    }*/
     function generateCard($sql, $tag){
         $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
         mysqli_set_charset($conn,"utf8");
@@ -105,7 +105,12 @@
                 if($page != 1) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
                 
                 for($i = 1; $i <= $total_pages; $i++){
-                    $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //切換頁數button
+                    if($i!=$page){
+                        $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //切換頁數button
+                    }
+                    else{
+                        $result .= "<button class = 'page_btn present_page' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //當下頁面
+                    }
                 }
                 if($page != $total_pages) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
             }

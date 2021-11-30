@@ -428,6 +428,11 @@ transform: translateX(0);
   	border-radius: 5px;
 }
 
+.present_page{
+	background: white;
+	color:#743A3A;
+}
+
 .page_btn:hover{
 	background: white;
 	color: #743A3A;
