@@ -453,7 +453,7 @@ transform: translateX(0);
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-	background:rgba(50,0,0,.9);
+	background:rgba(30,30,30,.9);
 }
 .userInfo-html .sign-in-htm,
 .userInfo-html .sign-up-htm,
@@ -520,6 +520,10 @@ transform: translateX(0);
 }
 .userInfo-form .group .button{
 	background:#AE0000;
+}
+
+.userInfo-form .group .button:hover{
+	background:#CE0000;
 }
 
 .userInfo-form .top-space{

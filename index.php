@@ -44,6 +44,11 @@
                 $tag = $_GET['tag'];
                 $sql = "select L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
             }
+            else if($_GET['search']){
+                $keyword = $_GET['search'];
+                $sql = "select L.* from liquors as , tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
+                $tag = "";
+            }
             else{ // show all card
                 $sql = "select * from liquors"; 
                 $tag = "";
