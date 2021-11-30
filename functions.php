@@ -1,8 +1,8 @@
 <?php
 
-    /*function mb_str_split($str){  
+    function mb_str_split($str){  
         return preg_split('/(?<!^)(?!$)/u', $str );  
-    }*/
+    }
     function generateCard($sql, $tag){
         $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
         mysqli_set_charset($conn,"utf8");
