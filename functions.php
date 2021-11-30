@@ -19,10 +19,8 @@
 
         $start_form = ($page-1)*$num_per_page; // the start row of liquors table
 
-        
         $limitedSql = $sql." limit $start_form, $num_per_page"; // sql
         $liquor_result = mysqli_query($conn, $limitedSql); // get result
-
         //$query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Highball'");
         $numrows = mysqli_num_rows($liquor_result); // number of result
         if($numrows >=1){
