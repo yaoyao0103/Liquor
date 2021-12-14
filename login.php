@@ -57,12 +57,13 @@
                                     $_SESSION['username'] = $dbUsername;
                                     $_SESSION['isAdmin'] = $dbIsAdmin;
 
-                                    if($dbIsAdmin){ // is admin
+                                    /*if($dbIsAdmin){ // is admin
                                         header("Location: admin.php");                                    
                                     }
                                     else{ // is not admin
                                         header("Location: member.php");                                    
-                                    }
+                                    }*/
+                                    header("Location: index.php");          
                                 }
                                 else
                                     $errormsg = "You must activate your account to login.";

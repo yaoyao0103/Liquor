@@ -1,5 +1,12 @@
 <?php
-    error_reporting(0);
+    /*use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require './PHPMailer/src/Exception.php';
+    require './PHPMailer/src/PHPMailer.php';
+    require './PHPMailer/src/SMTP.php';*/
+    
+    //error_reporting(0);
     session_start();
     $userId = $_SESSION['userId'];
     $username = $_SESSION['username'];
@@ -80,6 +87,7 @@
                                                 }
                                                 else
                                                     $errormsg = "An error has occurred. Your activation mail was not sent.";
+
                                             }
                                             else
                                                 $errormsg = "An error has occurred. Your account was not created";

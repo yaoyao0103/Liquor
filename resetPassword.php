@@ -34,7 +34,7 @@
             "<div>
                 <div class='header-dark'>";
 
-            include_once 'navigation_logged_in.php';
+            include_once 'navigation_member.php';
 
             // form
             echo
@@ -43,12 +43,16 @@
                     <div class='userInfo-form'>
                         <form class='reset-Password-htm' method='post' action='./resetPassword.php'>
                             <div class='group'>
-                                <label for='user' class='label'>Username</label>
-                                <input id='user' type='text' class='input' name='username'>
+                                <label for='user' class='label'>Password</label>
+                                <input id='user' type='password' class='input' name='password'>
                             </div>
                             <div class='group'>
-                                <label for='email' class='label'>Email Address</label>
-                                <input id='email' type='text' class='input' name='email'>
+                                <label for='email' class='label'>New Password</label>
+                                <input id='email' type='password' class='input' name='newPassword'>
+                            </div>
+                            <div class='group'>
+                                <label for='email' class='label'>Confirm Password</label>
+                                <input id='email' type='password' class='input' name='confirmPassword'>
                             </div>
                             <div class='group top-space'>
                                 <input type='submit' class='button' value='Reset Password' name='resetBtn'>

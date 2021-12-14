@@ -24,56 +24,43 @@
 </head>
 
 <body>
-    <?php
-        if($userID && $username){ // already logged in
-            if($isAdmin){ // is administrator
-                header("Location: admin.php");
-            }
-            else{ // is not administrator
-                header("Location: member.php");
-            }
-        }
-        else{ // not logged in
-            echo
-            "<div>
-                <div class='header-dark' id='blur'>";
+    <div>
+        <div class='header-dark' id='blur'>
+            <?php
+                include_once 'navigation.php';
+                //include_once 'ex_cards.php';
+                if($_GET['tag']){ // show by tags
+                    $tag = $_GET['tag'];
+                    $sql = "select L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
+                }
+                else if($_GET['search']){
+                    $keyword = $_GET['search'];
+                    $sql = "select distinct L.* from liquors as L, tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
+                    $tag = "";
+                }
+                else{ // show all card
+                    $sql = "select * from liquors"; 
+                    $tag = "";
+                }
+                generateCard($sql, $tag, $keyword);
+            ?>
+        </div>
 
-            include_once 'navigation.php';
-            //include_once 'ex_cards.php';
-            if($_GET['tag']){ // show by tags
-                $tag = $_GET['tag'];
-                $sql = "select L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
-            }
-            else if($_GET['search']){
-                $keyword = $_GET['search'];
-                $sql = "select distinct L.* from liquors as L, tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
-                $tag = "";
-            }
-            else{ // show all card
-                $sql = "select * from liquors"; 
-                $tag = "";
-            }
-            generateCard($sql, $tag);
-            $popup_html =
-            "<div id='popup'>
-                <div class = 'popup_img'>
-                    <img id = 'popup_img'>
-                </div>
-                <div class = 'popup_content'>
-                    <div id = 'popup_cname'></div>
-                    <div id = 'popup_ename'></div>
-                    <div id = 'popup_ingredients'></div>
-                    <div id = 'popup_detail'></div>
-                    <div id = 'popup_tags'></div>
-                    <div id = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
-                </div>
-            </div>";
-            echo  
-                "</div>".
-                $popup_html.
-            "</div>";
-        }
-    ?>
+        <!-- liquor information -->
+        <div id='popup'>  
+            <div class = 'popup_img'>
+                <img id = 'popup_img'>
+            </div>
+            <div class = 'popup_content'>
+                <div id = 'popup_cname'></div>
+                <div id = 'popup_ename'></div>
+                <div id = 'popup_ingredients'></div>
+                <div id = 'popup_detail'></div>
+                <div id = 'popup_tags'></div>
+                <div id = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
+            </div>
+        </div>
+    </div>
     
     
     <script>
@@ -84,6 +71,7 @@
             popup.classList.toggle('active');
             document.getElementById('popup_cname').innerHTML = liquor.cname;
             document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
+
             let ingredientStr = "<ul>";
             for(let row of ingredients){
                 ingredientStr += "<li>"+ row.name + ": " + row.volume;
@@ -91,7 +79,7 @@
             ingredientStr += "</ul>";
             let tagStr = "";
             for(let tag of tags){
-                tagStr += "<a href = '#'>" + tag.tag_name.replace("-", "'") + "</a>"
+                tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
             document.getElementById('popup_ingredients').innerHTML = ingredientStr;
             document.getElementById('popup_detail').innerHTML = liquor.detail;
