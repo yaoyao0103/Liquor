@@ -197,11 +197,11 @@ margin-top:60px;
 }
 
 .header-dark .hero h1 {
-color:#fff;
-font-family:'Bitter', serif;
-font-size:40px;
-margin-top:20px;
-margin-bottom:80px;
+	color:#fff;
+	font-family:'Bitter', serif;
+	font-size:40px;
+	margin-top:20px;
+	margin-bottom:80px;
 }
 
 @media (min-width:768px) {
@@ -236,22 +236,32 @@ letter-spacing: 2px;
 
 /*card的外殼*/
 .wrapper {
-position: relative;
-max-width: 1100px;
-margin: 0 auto;
-padding: 80px 20px;
+	position: relative;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 80px 20px;
+}
+
+@media (max-width:768px) {
+	.wrapper {
+		position: relative;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 80px 20px;
+		padding-left: 150px 
+	}
 }
 
 /*中文酒名*/
 .roll-up {
-overflow: hidden;
-position: relative;
+	overflow: hidden;
+	position: relative;
 }
 
 /*中文酒名*/
 .roll-up > span {
-display: inline-block;
-position: relative;
+	display: inline-block;
+	position: relative;
 }
 
 /*中文酒名出現之delay 7個字*/
@@ -386,6 +396,8 @@ width: 100%;
 position: absolute;
 background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
+
+
 .card .card_content {
 z-index: 1;
 }
