@@ -16,10 +16,8 @@
         <?php
             if($userId && $username){ // already logged in
                 session_destroy();
-                header("Location: index.php");
             }
-            else
-                echo "You are not logged in.";
+            header("Location: index.php");
         ?>
 
     </body>

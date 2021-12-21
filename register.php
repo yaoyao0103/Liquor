@@ -71,22 +71,9 @@
                                             $numrows = mysqli_num_rows($query); // number of result
                                             if($numrows == 1){ // have one result
 
-                                                // send verification code by mail
-                                                $site = "https://liquor-project.herokuapp.com";
-                                                $webmaster = "admin@yao.com";
-                                                $headers = "From: $webmaster";
-                                                $subject = "Activate Your Account";
-                                                $message = "Thanks for registering. Click the link below to activate your account.";
-                                                $message .= "$site/activate.php?user=$username&code=$code\n";
-                                                $message .= "You must activate your account to login.";
-                                                
-                                                if(mail($email, $subject, $message, $headers)){ // mail successfully
-                                                    $errormsg = "You have been registered. You must activate your account form the activation link sent to <b>$email</b>.";
-                                                    $username = "";
-                                                    $email = "";
-                                                }
-                                                else
-                                                    $errormsg = "An error has occurred. Your activation mail was not sent.";
+                                                $errormsg = "You have been registered.";
+                                                $username = "";
+                                                $email = "";
 
                                             }
                                             else

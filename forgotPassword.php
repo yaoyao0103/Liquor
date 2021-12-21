@@ -52,19 +52,7 @@
                                 $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'"); // query for matching username and password
                                 $numrows = mysqli_num_rows($query); // number of result
                                 if($numrows == 1){ // have one result
-
-                                    // send new password by mail
-                                    $webmaster = "admin@yao.com";
-                                    $headers = "From: yao<$webmaster>";
-                                    $subject = "Your New Password";
-                                    $message = "Hello. Your password has been reset. Your new password is below.\n";
-                                    $message .= "Password: $pass\n"; 
-                                    if(mail($email, $subject, $message, $headers)){ // mail successfully
-                                        $errormsg = "Your password has been reset. An email has been sent with your new password.";
-                                    }
-                                    else{
-                                        $errormsg = "An error has ocurred and your email was not sent containing your new password.";
-                                    }
+                                    $errormsg = "Your password has been reset.";
                                 }
                                 else
                                     $errormsg = "An error has ocurred and the password was not reset.";
@@ -106,6 +94,14 @@
                             <label for='email' class='label'>Email Address</label>
                             <input id='email' type='text' class='input' name='email'>
                         </div>
+                        <div class='group'>
+                            <label for='newPassword' class='label'>New Password</label>
+                            <input id='newPassword' type='password' class='input' name='newPassword'>
+                        </div> 
+                        <div class='group'>
+                            <label for='retypePassword' class='label'>Retype Password</label>
+                            <input id='retypePassword' type='password' class='input' name='retypePassword'>
+                        </div> 
                         <div class='group top-space'>
                             <input type='submit' class='button' value='Reset Password' name='resetBtn'>
                         </div>
