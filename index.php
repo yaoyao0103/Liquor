@@ -20,11 +20,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/collapzion.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.php">
+    <script type="text/javascript">
+		jQuery(function($){
+			$('#btncollapzion').Collapzion({
+                _child_attribute:[
+                    {
+                    'label':'New Recipes',
+                    'url':'#',
+                    'icon':'&#xE150;'
+                    },
+                    /*{
+                    'label':'Edit Recipes',
+                    'url':'#',
+                    'icon':'&#xE873;'
+                    },*/
+                    {
+                    'label':'My Recipes',
+                    'url':'#',
+                    'icon':'&#xea60;'
+                    },
+                ],
+                _main_btn_color:'#208f8f;',
+                _child_btn_color:'#eee;',
+				
+            });
+		});
+
+        
+	</script>
 </head>
 
 <body>
-    <div>
+    <div id="preloader"></div>
+    <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
@@ -57,11 +89,57 @@
                 <div id = 'popup_ingredients'></div>
                 <div id = 'popup_detail'></div>
                 <div id = 'popup_tags'></div>
-                <div id = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
+            </div>
+            <div class = 'popup_comment'>
+                <div class = 'all_comment'>
+                    <div id = 'comment_header'>Comment</div>
+                    <hr class = 'comment_header_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user1</div>
+                        <div class = 'comment_content'>It's awesome!!!</div>
+                    </div>
+                    <hr class = 'comment_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user3</div>
+                        <div class = 'comment_content'>What's a god like recipe!!</div>
+                    </div>
+                    <hr class = 'comment_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user4</div>
+                        <div class = 'comment_content'>Garbage!!</div>
+                    </div>
+                    <hr class = 'comment_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user5</div>
+                        <div class = 'comment_content'>Wow!!</div>
+                    </div>
+                    <hr class = 'comment_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user6</div>
+                        <div class = 'comment_content'>Yo!!</div>
+                    </div>
+                    <hr class = 'comment_hr'/>
+                    <div class = 'comment'>
+                        <div class = 'comment_username'>user7</div>
+                        <div class = 'comment_content'>Good to drink!!</div>
+                    </div>
+                </div>
+                <div class = "comment_input">
+                    <input type="text" id = "comment_text">
+                    <input type="submit" id = "comment_btn">
+                </div>
+            </div>
+            <div class = 'popup_btn_group'>
+                <?php
+                    if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
+                    <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>"
+                ?>
+                <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
             </div>
         </div>
     </div>
     
+    <div id="btncollapzion" class="btn_collapzion"></div>
     
     <script>
         function toggle(liquor, ingredients, tags){
@@ -82,20 +160,30 @@
                 tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
             document.getElementById('popup_ingredients').innerHTML = ingredientStr;
-            document.getElementById('popup_detail').innerHTML = liquor.detail;
-            document.getElementById('popup_tags').innerHTML = "Tags: " + tagStr;
+            document.getElementById('popup_detail').innerHTML = "<span>" + liquor.detail.substr(0,3) + "</span><br/>" + liquor.detail.substr(3);
+            document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
         }
 
         function unToggle(){
             let blur = document.getElementById('blur');
-            blur.classList.toggle('active');
             let popup = document.getElementById('popup');
-            popup.classList.toggle('active');
+                blur.classList.toggle('active');
+                popup.classList.toggle('active');
         }
+
+
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            $("#preloader").fadeOut(1000);
+            $(".load-wrapper").fadeIn(1000);
+        });
+        
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="js/tilt.js"></script>
 </body>

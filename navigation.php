@@ -38,6 +38,7 @@
                     <li><a class="dropdown-item" role="presentation" href="index.php?tag=Frappe">Frappe</a></li>
                     <li><a class="dropdown-item" role="presentation" href="index.php?tag=Punch">Punch</a></li>
                     <li><a class="dropdown-item" role="presentation" href="index.php?tag=Fizz">Fizz</a></li>
+                    <li><a class="dropdown-item" role="presentation" href="index.php?tag=Personal">Personal Upload</a></li>
                 </ul>
               </li>
 

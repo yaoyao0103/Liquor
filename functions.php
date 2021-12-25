@@ -48,9 +48,9 @@
                 $tagsJSON = json_encode($tempTag);
                 
                 $liquorJSON = json_encode($liquor);
-                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL)\"> 
-                <div class=\"card_content\"> 
-                    <a href='#' onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON)' class=\"play-button\"> 
+                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON)'> 
+                <div class=\"card_content\" > 
+                    <a href='#' class=\"play-button\"> 
                     <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 50 50\"> 
                         <path d=\"M42.7,42.7L25,50L7.3,42.7L0,25L7.3,7.3L25,0l17.7,7.3L50,25L42.7,42.7z\" class=\"polygon\"></path> 
                         <polygon points=\"27.5,9 27.5,19 30,21 30,41 20,41 20,21 22.5,19 22.5,9\"></polygon> 
