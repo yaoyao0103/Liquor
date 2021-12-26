@@ -10,12 +10,16 @@
     $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
     mysqli_set_charset($conn,"utf8");
     $sql = "INSERT INTO comments VALUES($liquorId, '' , $userId, '$username', '$comment')";
-    $flag = mysqli_query($conn, $sql);
-    if($flag){
-        echo "success";
+    if(mysqli_query($conn, $sql)){
+        echo "<script type='text/javascript'>
+        alert('Success!');
+        window.location.replace('index.php');
+        </script>";
     }
     else{
-        echo $flag;
-        echo $liquorId . "-" . $userId . "-" . $username . "-" . $comment;
+        echo "<script type='text/javascript'>
+        alert('Error!');
+        window.location.replace('index.php');
+        </script>";
     }
 ?>

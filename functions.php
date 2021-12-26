@@ -48,7 +48,16 @@
                 $tagsJSON = json_encode($tempTag);
                 
                 $liquorJSON = json_encode($liquor);
-                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON)'> 
+        
+                
+                $commentSql = "SELECT * FROM comments WHERE id = $id";
+                $commentResult = mysqli_query($conn, $commentSql);
+                $tempComment = [];
+                while($row = mysqli_fetch_assoc($commentResult))
+                    $tempComment[] = $row; 
+                $commentJSON = json_encode($tempComment);
+
+                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON)'> 
                 <div class=\"card_content\" > 
                     <a href='#' class=\"play-button\"> 
                     <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 50 50\"> 

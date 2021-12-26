@@ -91,8 +91,8 @@
                 <div id = 'popup_tags'></div>
             </div>
             <div class = 'popup_comment'>
-                <div class = 'all_comment'>
-                    <div id = 'comment_header'>Comment</div>
+                <div class = 'all_comment' id = 'all_comment'>
+                    <!-- <div id = 'comment_header'>Comment</div>
                     <hr class = 'comment_header_hr'/>
                     <div class = 'comment'>
                         <div class = 'comment_username'>user1</div>
@@ -122,7 +122,7 @@
                     <div class = 'comment'>
                         <div class = 'comment_username'>user7</div>
                         <div class = 'comment_content'>Good to drink!!</div>
-                    </div>
+                    </div> -->
                 </div>
                 <?php
                     if($username && $userId) echo 
@@ -147,7 +147,8 @@
     <div id="btncollapzion" class="btn_collapzion"></div>
     
     <script>
-        function toggle(liquor, ingredients, tags){
+        function toggle(liquor, ingredients, tags, comments){
+            console.log(comments);
             $.ajax({
                 type: "POST",
                 url: "setLiquorIdSession.php",
@@ -177,10 +178,20 @@
             for(let tag of tags){
                 tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
+
+            let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
+            for(let comment of comments){
+                commentStr += "<div class = 'comment'> \
+                        <div class = 'comment_username'>" + comment.username + "</div> \
+                        <div class = 'comment_content'>" + comment.comment + "</div> \
+                    </div> \
+                    <hr class = 'comment_hr'/> ";
+            }
             document.getElementById('popup_ingredients').innerHTML = ingredientStr;
             document.getElementById('popup_detail').innerHTML = "<span>" + liquor.detail.substr(0,3) + "</span><br/>" + liquor.detail.substr(3);
             document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
+            document.getElementById('all_comment').innerHTML = commentStr;
         }
 
         function unToggle(){
