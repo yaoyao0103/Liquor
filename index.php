@@ -124,10 +124,15 @@
                         <div class = 'comment_content'>Good to drink!!</div>
                     </div>
                 </div>
-                <div class = "comment_input">
-                    <input type="text" id = "comment_text">
-                    <input type="submit" id = "comment_btn">
-                </div>
+                <?php
+                    if($username && $userId) echo 
+                        '<div class = "comment_input">
+                        <form method = "POST" action = "./comment.php">
+                            <input type="text" id = "comment_text" name = "comment">
+                            <input type="submit" id = "comment_btn" name = "comment_btn" >
+                        </form>
+                    </div>';
+                ?>
             </div>
             <div class = 'popup_btn_group'>
                 <?php
@@ -143,6 +148,19 @@
     
     <script>
         function toggle(liquor, ingredients, tags){
+            $.ajax({
+                type: "POST",
+                url: "setLiquorIdSession.php",
+                data:{
+                    liquorId: liquor.id
+                },
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log('error; ' + eval(error));
+                }}
+            );
             let blur = document.getElementById('blur');
             blur.classList.toggle('active');
             let popup = document.getElementById('popup');
