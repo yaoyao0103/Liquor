@@ -430,27 +430,25 @@ transform: translateX(0);
 
 .page_btn_div {
 	width: 800px;
-	margin:0 auto
+	margin:0 auto;
 }
 
 .page_btn{
-	background: black;
+	background: none;
 	color:white;
 	width: 35px;
-	border: 0.1px solid #4F4F4F;
 	margin-left: 0.8px;
-  	border-radius: 5px;
+	border: none;
+	cursor: pointer;
 }
 
-.present_page{
-	background: white;
-	color:#743A3A;
-}
 
-.page_btn:hover{
+.page_btn:hover, .present_page{
 	background: white;
 	color: #743A3A;
-	transition: 0.15s;
+	border-radius: 100%;
+	border: none;
+	transition: 0.2s;
 }
 
 
@@ -605,7 +603,7 @@ transform: translateX(0);
 }
 
 #popup_img {
-	width: 240px;
+	height: 360px;
 }
 
 #popup_cname {
@@ -690,6 +688,7 @@ transform: translateX(0);
 
 #popup .all_comment {
 	height: 310px;
+	width: 250px;
 	overflow-y: auto;
 }
 
@@ -762,6 +761,7 @@ transform: translateX(0);
 }
 
 
+
 a._collapz_parant._close:after, a._collapz_parant._open:after {
     content: "\E5CD";
     font-family: 'Material Icons';
@@ -791,6 +791,7 @@ a._collapz_parant._close {
 a._collapz_parant._close:after {
     left: 0;
 }
+
 a._collapz_parant._open {
     background-color: #208f8f;
 }
@@ -837,7 +838,6 @@ ul._child_collapzion li span._title {
 ._col_shadow {
     box-shadow: 0 4px 17px 0 rgba(0, 0, 0, .14), 0 1px 32px 0 rgba(0, 0, 0, .12), 0 2px 9px -1px rgba(0, 0, 0, .2);
 }
-
 
 #likeBtn {
 	width: 15px;
@@ -916,6 +916,51 @@ ul._child_collapzion li span._title {
 	}
 }
 
+#commentLikeBtn {
+	width: 8px;
+	float: right;
+	margin-right: 15px;
+}
+
+.commentHeart {
+	background-color: #8a93a0;
+	height: 8px;
+	width: 8px;
+	transform: rotate(-45deg) scale(1);
+	display: inline-block;
+	cursor: pointer;
+}
+
+
+.commentHeart::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: 0;
+	background-color: inherit;
+	border-radius: 50%;
+	height: 8px;
+	width: 8px;
+}
+
+.commentHeart::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: -50%;
+	background-color: inherit;
+	border-radius: 50%;
+	height: 8px;
+	width: 8px;
+}
+
+#comment_total_like {
+	font-size: 0.3em;
+}
+
+.comment_id {
+	display: none;
+}
 
 #preloader{
 	background: #000 url(../images/loader.gif) no-repeat center center;

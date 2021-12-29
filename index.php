@@ -134,16 +134,19 @@
                     </div>';
                 ?>
             </div>
+            <?php
+                if($isAdmin) echo 
+                    '<div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
+                        <span class = "heart" id = "heart"></span>
+                        <p id = "total_like">0</p>
+                    </div>';
+            ?>
             
-            <div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
-                <span class = "heart" id = "heart"></span>
-                <p id = "total_like">0</p>
-            </div>
             
             <div class = 'popup_btn_group'>
                 <?php
                     if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
-                    <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>"
+                    <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>";
                 ?>
                 <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
             </div>
@@ -188,7 +191,10 @@
             let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
             for(let comment of comments){
                 commentStr += "<div class = 'comment'> \
-                        <div class = 'comment_username'>" + comment.username + "</div> \
+                        <div class = 'comment_id'>" + comment.commentId + "</div> \
+                        <div class = 'comment_username'><span>" + comment.username + "</span><div class = 'commentLikeBtn' id = 'commentLikeBtn' onclick='setCommentLikeColor()'> \
+                    <span class = 'commentHeart' id = 'commentHeart'></span> \
+                    <p id = 'comment_total_like'>0</p></div></div> \
                         <div class = 'comment_content'>" + comment.comment + "</div> \
                     </div> \
                     <hr class = 'comment_hr'/> ";
@@ -210,6 +216,9 @@
             let element = document.getElementById("heart");
             element.style.backgroundColor = "#8a93a0";
             document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
+            let element = document.getElementById("commentHeart");
+            element.style.backgroundColor = "#8a93a0";
+            document.getElementById("commentLikeBtn").setAttribute("onclick", "setCommentLikeColor()");
         }
 
         function setLikeColor(){
@@ -219,6 +228,25 @@
             $.ajax({
                 type: "POST",
                 url: "setLiquorLike.php",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log('error; ' + eval(error));
+                }}
+            );
+        }
+
+        function setCommentLikeColor(){
+            let element = document.getElementById("commentHeart");
+            element.style.backgroundColor = "red";
+            document.getElementById("commentLikeBtn").setAttribute("onclick", "");
+            $.ajax({
+                type: "POST",
+                url: "setCommentLike.php",
+                data:{
+                    commentId: 
+                }
                 success: function(data){
                     console.log(data);
                 },
