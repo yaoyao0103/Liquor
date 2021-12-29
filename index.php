@@ -134,6 +134,12 @@
                     </div>';
                 ?>
             </div>
+            
+            <div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
+                <span class = "heart" id = "heart"></span>
+                <p id = "total_like">0</p>
+            </div>
+            
             <div class = 'popup_btn_group'>
                 <?php
                     if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
@@ -147,8 +153,8 @@
     <div id="btncollapzion" class="btn_collapzion"></div>
     
     <script>
-        function toggle(liquor, ingredients, tags, comments){
-            console.log(comments);
+        function toggle(liquor, ingredients, tags, comments, totalLike){
+            console.log("totalLike: "  + totalLike);
             $.ajax({
                 type: "POST",
                 url: "setLiquorIdSession.php",
@@ -192,6 +198,8 @@
             document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
             document.getElementById('all_comment').innerHTML = commentStr;
+            document.getElementById('total_like').innerHTML = totalLike;
+            
         }
 
         function unToggle(){
@@ -199,6 +207,25 @@
             let popup = document.getElementById('popup');
                 blur.classList.toggle('active');
                 popup.classList.toggle('active');
+            let element = document.getElementById("heart");
+            element.style.backgroundColor = "#8a93a0";
+            document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
+        }
+
+        function setLikeColor(){
+            let element = document.getElementById("heart");
+            element.style.backgroundColor = "red";
+            document.getElementById("likeBtn").setAttribute("onclick", "");
+            $.ajax({
+                type: "POST",
+                url: "setLiquorLike.php",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log('error; ' + eval(error));
+                }}
+            );
         }
 
 
@@ -209,6 +236,21 @@
         window.addEventListener("load", function(){
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
+
+            const likeBtn = document.getElementById('likeBtn');
+            const heart=document.getElementById('heart')
+            likeBtn.addEventListener('mousemove',() => {
+                heart.classList.add('heratPop')
+            });
+            likeBtn.addEventListener('mouseout',() => {
+                heart.classList.remove('heratPop')
+            });
+            /*
+            if($flag){
+                let element = document.getElementById("heart");
+                element.style.backgroundColor = "red";
+                document.getElementById("likeBtn").setAttribute("onclick", "");
+            }*/
         });
         
     </script>

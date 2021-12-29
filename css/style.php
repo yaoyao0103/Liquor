@@ -838,6 +838,85 @@ ul._child_collapzion li span._title {
     box-shadow: 0 4px 17px 0 rgba(0, 0, 0, .14), 0 1px 32px 0 rgba(0, 0, 0, .12), 0 2px 9px -1px rgba(0, 0, 0, .2);
 }
 
+
+#likeBtn {
+	width: 15px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.heart {
+	background-color: #8a93a0;
+	height: 13px;
+	width: 13px;
+	transform: rotate(-45deg) scale(1);
+	display: inline-block;
+	cursor: pointer;
+}
+
+
+.heart::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: 0;
+	background-color: inherit;
+	border-radius: 50%;
+	height: 13px;
+	width: 13px;
+}
+
+.heart::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: -50%;
+	background-color: inherit;
+	border-radius: 50%;
+	height: 13px;
+	width: 13px;
+}
+
+.heratPop{
+	animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: rotate(-45deg) scale(1);
+	}
+
+	10% {
+		transform: rotate(-45deg) scale(1.1);
+	}
+
+	20% {
+		transform: rotate(-45deg) scale(0.9);
+	}
+
+	30% {
+		transform: rotate(-45deg) scale(1.2);
+	}
+
+	40% {
+		transform: rotate(-45deg) scale(0.9);
+	}
+
+	50% {
+		transform: rotate(-45deg) scale(1.1);
+	}
+
+	60% {
+		transform: rotate(-45deg) scale(0.9);
+	}
+
+	70% {
+		transform: rotate(-45deg) scale(1);
+	}
+}
+
+
 #preloader{
 	background: #000 url(../images/loader.gif) no-repeat center center;
 	background-size: 30%;

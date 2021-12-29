@@ -24,7 +24,7 @@
         //$query = mysqli_query($conn, "SELECT * FROM liquors as L, tag as T WHERE L.id = T.liquor_id and T.tag_name = 'Highball'");
         $numrows = mysqli_num_rows($liquor_result); // number of result
         if($numrows >=1){
-            $result = "<div class=\"wrapper\" id = \"all_card\">";
+            $result = "<div class=\"wrapper\" id = \"all_card\" >";
             while ($liquor = mysqli_fetch_array($liquor_result, MYSQLI_ASSOC)) {
                 $cname = $liquor['cname'];
                 $ename = $liquor['ename'];
@@ -57,7 +57,12 @@
                     $tempComment[] = $row; 
                 $commentJSON = json_encode($tempComment);
 
-                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON)'> 
+                $likeSql = "SELECT count(*) FROM likes WHERE id = $id";
+                $likeResult = mysqli_query($conn, $likeSql);
+                $likeResult = $likeResult->fetch_array();
+                $totalLike = intval($likeResult[0]);
+
+                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON, $totalLike)'> 
                 <div class=\"card_content\" > 
                     <a href='#' class=\"play-button\"> 
                     <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 50 50\"> 
