@@ -39,7 +39,7 @@
                         if($numrows == 1){ // have one matching data
                             $row = mysqli_fetch_assoc($query); // get this row
                             // get some value of this row
-                            $dbId = $row['id'];
+                            $dbId = $row['userId'];
                             $dbUsername = $row['username'];
                             $dbPassWord = $row['password'];
                             $dbActive = $row['active'];
