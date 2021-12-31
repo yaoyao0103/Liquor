@@ -466,12 +466,24 @@ transform: translateX(0);
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .userInfo-html{
+	overflow: auto;
 	width:100%;
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
 	background:rgba(30,30,30,.9);
 }
+::-webkit-scrollbar{
+	width: 10px;
+}
+::-webkit-scrollbar-track{
+	background: #111111;
+}
+::-webkit-scrollbar-thumb{
+	background: #555555;
+	border-radius: 5px;
+}
+
 .userInfo-html .sign-in-htm,
 .userInfo-html .sign-up-htm,
 .userInfo-html .reset-Password-htm,
@@ -659,4 +671,14 @@ transform: translateX(0);
 
 #popup_btn a{
 	color: white;
+}
+<!-- .newRecipeInfo-form  .input {
+	padding:15px 20px;
+	border-radus : 25px;
+	background:rgba(255,255,255,.1);
+	text-security:circle;
+	-webkit-text-security:circle;
+} -->
+.userInfo-form .group #ingredient{
+	height:100px;
 }
