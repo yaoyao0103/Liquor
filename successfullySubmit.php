@@ -20,7 +20,7 @@
 </head>
 <body>
 <?php
-    $userId = $_SESSION['userId'];
+    
     if($_POST['nextBtn']){
         setcookie('errormsg','');
         try{
@@ -44,6 +44,7 @@
                                 if($ingredients){
                                     if($tags){
                                         $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
+                                        mysqli_set_charset($conn,"utf8");
                                         $mysql ="SELECT * FROM liquors WHERE cname='$cname'";
                                         $query = mysqli_query($conn,$mysql);
                                         $numrows = mysqli_num_rows($query);
@@ -135,27 +136,11 @@
             // for($i=0; $i<$tag_quantity; $i++){
             //     array_push($tag_array, $_POST['tag' . $i]);
             // }
-
-            // echo print_r($ingredient_array);
-            // echo print_r($volume_array);
-            // echo print_r($tag_array);
-            // echo $length;
-            // echo $cname;
-            // echo $ename;
-            // echo $photoURL;
-            // echo $detail;
-            // print_r($ingredients);
-            // print_r($tags);
-            // print_r($ingredient_volume_array);
-            // print_r($ingredient_array); 
-            // //print_r($ingredient_volume_array);
-            // print_r($volume_array); 
-            // print_r($tag_array);
             
             echo "<script>alert('success');window.location.replace('./index.php');</script>";
             
             $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
-            mysqli_query($conn,"INSERT INTO new_liquors  VALUES ('','$cname','$ename','$detail','$photoURL','5','0')");
+            mysqli_query($conn,"INSERT INTO new_liquors  VALUES ('','$cname','$ename','$detail','$photoURL','$userId','0')");
              
             ?>
             <script>console.log("success")</script>
@@ -170,14 +155,13 @@
             <?php
             // echo $id;
             
-            for($i=0; $i<count($ingredient_array); ++$i){
+            for($i=1; $i<count($ingredient_array); ++$i){
                 $iname = $ingredient_array[$i];
                 $vol = $volume_array[$i];
-                $mysql = "INSERT INTO new_ingredient VALUES ('', $id', '$iname', '$vol', '0')";
+                $mysql = "INSERT INTO new_ingredient VALUES ('', '$id', '$iname', '$vol', '0')";
                 $query = mysqli_query($conn, $mysql);
-                 echo "<script>alert('nice')</script>"; 
             }
-            for($i=0; $i<count($tag_array); ++$i){
+            for($i=1; $i<count($tag_array); ++$i){
                 $tname = $tag_array[$i];
                 $mysql = "INSERT INTO new_tag VALUES ('', '$id', '$tname', '0')";
                 $query = mysqli_query($conn, $mysql);
