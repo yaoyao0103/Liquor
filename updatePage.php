@@ -137,7 +137,6 @@
             //     array_push($ingredient_array, $_POST['ingredient'.$i]);
             //     array_push($volume_array, $_POST['volume'.$i]);
             // }
-            echo "here";
             $tag_array=explode("#",$tags);
            
             // for($i=0; $i<$tag_quantity; $i++){
