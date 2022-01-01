@@ -31,11 +31,7 @@
             $ingredients=$_POST['ingredients'];
             $tags=$_POST['tags'];
 			$id = $_GET['id'];
-			echo $cname;
-			echo "        ";
-			echo $ename;
-			echo "        ";
-			echo $detail;
+			
 			
 
 			?>
@@ -141,6 +137,7 @@
             //     array_push($ingredient_array, $_POST['ingredient'.$i]);
             //     array_push($volume_array, $_POST['volume'.$i]);
             // }
+            echo "here";
             $tag_array=explode("#",$tags);
            
             // for($i=0; $i<$tag_quantity; $i++){
@@ -148,14 +145,23 @@
             // }
             $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
             mysqli_set_charset($conn, "utf8");
+			
+			$sql = "UPDATE new_liquors SET cname =$cname,ename=$ename,detail=$detail,photoURL=$photoURL,isVerified=0 WHERE ID=$id";
 			mysqli_query($conn,$sql);
-			$sql = "UPDATE new_liquors SET cname =$cname,ename=$ename,detail=$detail,photoURL=$photoURL,isVerified=0 WHERE ID=".$id;
+            $sql = "UPDATE new_liquors SET ename=$ename WHERE ID=$id";
 			mysqli_query($conn,$sql);
+            $sql = "UPDATE new_liquors SET detail=$detail WHERE ID=$id";
+			mysqli_query($conn,$sql);
+            $sql = "UPDATE new_liquors SET photoURL=$photoURL WHERE ID=$id";
+			mysqli_query($conn,$sql);
+            $sql = "UPDATE new_liquors SET isVerified=0 WHERE ID=$id";
+			mysqli_query($conn,$sql);
+            
             ?>
             
             <?php
-            $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
-            mysqli_set_charset($conn, "utf8");
+           
+           
 			mysqli_query($conn,$sql);
             for($i=1; $i<count($ingredient_array); ++$i){
                 $iname = $ingredient_array[$i];
