@@ -21,7 +21,7 @@
 <body>
 <?php
     
-    if($_POST['nextBtn']){
+    if($_POST['updateBtn']){
         setcookie('errormsg','');
         try{
             $cname = $_POST['cname'];
@@ -30,8 +30,18 @@
 			$detail =$_POST['detail'];
             $ingredients=$_POST['ingredients'];
             $tags=$_POST['tags'];
-            $ingredients;
-            // $cname = $_COOKIE['cname'];
+			$id = $_GET['id'];
+			echo $cname;
+			echo "        ";
+			echo $ename;
+			echo "        ";
+			echo $detail;
+			
+
+			?>
+			<script>console.log('<?php echo $id ?>')</script>
+            <?php
+			// $cname = $_COOKIE['cname'];
             // $ename = $_COOKIE['ename'];
             // $photoURL = $_COOKIE['photoURL'];
             // $detail = $_COOKIE['detail'];
@@ -114,9 +124,9 @@
                             
            
             $ingredient_volume= array();//put ingredient:volume
-            $ingredient_array = array();//put ingredient
-            $volume_array = array();//put volume
-            $tag_array = array();//put tag
+            $ingredient_array = array();
+            $volume_array = array();
+            $tag_array = array();
             $ingredient_volume = explode('+',$ingredients);
             $length = count($ingredient_volume);
             $tmp=array();
@@ -136,41 +146,36 @@
             // for($i=0; $i<$tag_quantity; $i++){
             //     array_push($tag_array, $_POST['tag' . $i]);
             // }
-            
-           
-            
             $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
             mysqli_set_charset($conn, "utf8");
-            mysqli_query($conn,"INSERT INTO new_liquors  VALUES ('','$cname','$ename','$detail','$photoURL','$userId','0')");
-             
+			mysqli_query($conn,$sql);
+			$sql = "UPDATE new_liquors SET cname =$cname,ename=$ename,detail=$detail,photoURL=$photoURL,isVerified=0 WHERE ID=".$id;
+			mysqli_query($conn,$sql);
             ?>
-            <script>console.log("success")</script>
-            <?php
-            $mysql = "SELECT * FROM new_liquors WHERE cname = '$cname'";
-            $query = mysqli_query($conn, $mysql);
-            $firstrow = mysqli_fetch_assoc($query);
-            $id = $firstrow['ID'];
-            ?>
-            <script>console.log("success")</script>
-            <?php
             
-            
+            <?php
+            $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
+            mysqli_set_charset($conn, "utf8");
+			mysqli_query($conn,$sql);
             for($i=1; $i<count($ingredient_array); ++$i){
                 $iname = $ingredient_array[$i];
                 $vol = $volume_array[$i];
                 $mysql = "INSERT INTO new_ingredient VALUES ('', '$id', '$iname', '$vol', '0')";
                 $query = mysqli_query($conn, $mysql);
             }
+			$sql="DELETE FROM new_tag WHERE  liquor_id=$id";
+			mysqli_query($conn,$sql);
             for($i=1; $i<count($tag_array); ++$i){
                 $tname = $tag_array[$i];
                 $mysql = "INSERT INTO new_tag VALUES ('', '$id', '$tname', '0')";
                 $query = mysqli_query($conn, $mysql);
             }
             
+			
             ?>
             <script>console.log("success")</script>
             <?php
-            echo "<script>alert('Submit Successfully');
+            echo "<script>alert('Update Successfully');
             window.location.replace('./myRecipe.php');</script>";
         }catch(Exception $e){
             echo "<script>alert('Error: ".$e."');</script>";
