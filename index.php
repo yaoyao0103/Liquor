@@ -30,7 +30,7 @@
                 _child_attribute:[
                     {
                     'label':'New Recipes',
-                    'url':'#',
+                    'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
                     /*{
@@ -39,10 +39,19 @@
                     'icon':'&#xE873;'
                     },*/
                     {
-                    'label':'My Recipes',
-                    'url':'#',
-                    'icon':'&#xea60;'
+                        'label':'My Recipes',
+                        'url':'myRecipe.php',
+                        'icon':'&#xea60;'
                     },
+                    <?php
+                    if($isAdmin){
+                        echo "{
+                            'label':'Manage Recipes',
+                            'url':'manage.php',
+                            'icon':'&#xea60;'
+                            },";
+                    }
+                    ?>
                 ],
                 _main_btn_color:'#208f8f;',
                 _child_btn_color:'#eee;',
