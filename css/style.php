@@ -958,10 +958,6 @@ ul._child_collapzion li span._title {
 	font-size: 0.3em;
 }
 
-.comment_id {
-	display: none;
-}
-
 #preloader{
 	background: #000 url(../images/loader.gif) no-repeat center center;
 	background-size: 30%;

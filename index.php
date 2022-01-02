@@ -191,10 +191,9 @@
             let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
             for(let comment of comments){
                 commentStr += "<div class = 'comment'> \
-                        <div class = 'comment_id'>" + comment.commentId + "</div> \
-                        <div class = 'comment_username'><span>" + comment.username + "</span><div class = 'commentLikeBtn' id = 'commentLikeBtn' onclick='setCommentLikeColor()'> \
+                        <div class = 'comment_username'><span>" + comment.username + "</span><div class = 'commentLikeBtn' id = 'commentLikeBtn' onclick='setCommentLikeColor(this)' value = " + comment.commentId + "> \
                     <span class = 'commentHeart' id = 'commentHeart'></span> \
-                    <p id = 'comment_total_like'>0</p></div></div> \
+                    <p id = 'comment_total_like'>" + comment.total_like + "</p></div></div> \
                         <div class = 'comment_content'>" + comment.comment + "</div> \
                     </div> \
                     <hr class = 'comment_hr'/> ";
@@ -216,7 +215,7 @@
             let element = document.getElementById("heart");
             element.style.backgroundColor = "#8a93a0";
             document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
-            let element = document.getElementById("commentHeart");
+            element = document.getElementById("commentHeart");
             element.style.backgroundColor = "#8a93a0";
             document.getElementById("commentLikeBtn").setAttribute("onclick", "setCommentLikeColor()");
         }
@@ -237,16 +236,17 @@
             );
         }
 
-        function setCommentLikeColor(){
+        function setCommentLikeColor(obj){
             let element = document.getElementById("commentHeart");
             element.style.backgroundColor = "red";
             document.getElementById("commentLikeBtn").setAttribute("onclick", "");
+            let id = $(obj).attr("value");
             $.ajax({
                 type: "POST",
                 url: "setCommentLike.php",
                 data:{
-                    commentId: 
-                }
+                    commentId: id
+                },
                 success: function(data){
                     console.log(data);
                 },
@@ -265,14 +265,23 @@
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
 
+            //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
-            const heart=document.getElementById('heart')
+            const heart = document.getElementById('heart');
             likeBtn.addEventListener('mousemove',() => {
                 heart.classList.add('heratPop')
             });
             likeBtn.addEventListener('mouseout',() => {
                 heart.classList.remove('heratPop')
             });
+
+
+            /*
+            $('.step_wrapper').on('click','.step_box',function () {
+                $('.step_box').removeClass('selected');
+                $(this).addClass('selected')
+            });
+            */
             /*
             if($flag){
                 let element = document.getElementById("heart");

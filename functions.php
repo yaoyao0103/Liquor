@@ -53,14 +53,23 @@
                 $commentSql = "SELECT * FROM comments WHERE id = $id";
                 $commentResult = mysqli_query($conn, $commentSql);
                 $tempComment = [];
-                while($row = mysqli_fetch_assoc($commentResult))
+                while($row = mysqli_fetch_assoc($commentResult)){
+                    $commentId = $row['commentId'];
+                    $commentLikeSql = "SELECT count(*) FROM comment_likes WHERE commentId = $commentId ";
+                    $commentLikeResult = mysqli_query($conn, $commentLikeSql);
+                    $commentLikeResult = $commentLikeResult->fetch_array();
+                    $commentTotalLike = intval($commentLikeResult[0]);
+                    $row['total_like'] = $commentTotalLike;
                     $tempComment[] = $row; 
+                }
                 $commentJSON = json_encode($tempComment);
 
                 $likeSql = "SELECT count(*) FROM likes WHERE id = $id";
                 $likeResult = mysqli_query($conn, $likeSql);
                 $likeResult = $likeResult->fetch_array();
                 $totalLike = intval($likeResult[0]);
+
+                
 
                 $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON, $totalLike)'> 
                 <div class=\"card_content\" > 
