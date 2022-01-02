@@ -147,20 +147,20 @@
 			
 			$sql = "UPDATE new_liquors SET cname =$cname,ename=$ename,detail=$detail,photoURL=$photoURL,isVerified=0 WHERE ID=$id";
 			mysqli_query($conn,$sql);
-            $sql = "UPDATE new_liquors SET ename=$ename WHERE ID=$id";
-			mysqli_query($conn,$sql);
-            $sql = "UPDATE new_liquors SET detail=$detail WHERE ID=$id";
-			mysqli_query($conn,$sql);
-            $sql = "UPDATE new_liquors SET photoURL=$photoURL WHERE ID=$id";
-			mysqli_query($conn,$sql);
-            $sql = "UPDATE new_liquors SET isVerified=0 WHERE ID=$id";
-			mysqli_query($conn,$sql);
+            // $sql = "UPDATE new_liquors SET ename=$ename WHERE ID=$id";
+			// mysqli_query($conn,$sql);
+            // $sql = "UPDATE new_liquors SET detail=$detail WHERE ID=$id";
+			// mysqli_query($conn,$sql);
+            // $sql = "UPDATE new_liquors SET photoURL=$photoURL WHERE ID=$id";
+			// mysqli_query($conn,$sql);
+            // $sql = "UPDATE new_liquors SET isVerified=0 WHERE ID=$id";
+			// mysqli_query($conn,$sql);
             
             ?>
             
             <?php
            
-           
+           $sql="DELETE FROM new_ingredient WHERE  liquor_id=$id";
 			mysqli_query($conn,$sql);
             for($i=1; $i<count($ingredient_array); ++$i){
                 $iname = $ingredient_array[$i];
