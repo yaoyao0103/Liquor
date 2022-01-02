@@ -148,8 +148,13 @@
                     '<div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
                         <span class = "heart" id = "heart"></span>
                         <p id = "total_like">0</p>
-                    </div>';
+                    </div>
+                    <div><i class = "material-icons" id = "comment_icon">&#xe0ca;</i></div>
+                    <div><i class = "material-icons" id = "bookmark_icon">&#xe98b;</i></div>
+                    ';
+                
             ?>
+            
             
             
             <div class = 'popup_btn_group'>
@@ -298,7 +303,6 @@
                 document.getElementById("likeBtn").setAttribute("onclick", "");
             }*/
         });
-        
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

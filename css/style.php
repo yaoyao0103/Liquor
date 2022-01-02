@@ -844,6 +844,7 @@ ul._child_collapzion li span._title {
 	float: left;
 	margin-top: 20px;
 	margin-left: 30px;
+	margin-right: 7px;
 }
 
 .heart {
@@ -956,6 +957,18 @@ ul._child_collapzion li span._title {
 
 #comment_total_like {
 	font-size: 0.3em;
+}
+
+i {
+	float: left;
+	margin-left: 21px;
+	color: #8a93a0;
+	margin-top: 17px;
+}
+
+#bookmark_icon {
+	margin-top: 16px;
+	cursor: pointer;
 }
 
 #preloader{
