@@ -67,6 +67,7 @@ body:before {
 
 /*導覽列品牌*/
 .header-dark .navbar .navbar-brand {
+	font-size: 1.5em;
 	font-weight:bold;
 	color:inherit;
 }
