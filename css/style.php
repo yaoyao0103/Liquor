@@ -46,31 +46,24 @@ body:before {
 	min-height: 100vh;
 }
 
-/*header RWD*/
+/*header RWD
 @media (min-width:768px) {
 .header-dark {
 	padding-bottom:120px;
 }
-}
+}*/
 
 /*導覽列設定*/
 .header-dark .navbar {
 	background:transparent;
-	padding-top:0;
-	padding-bottom:0;
+	padding-top:.75rem;
+	padding-bottom:.75rem;
 	color:#fff;
 	border-radius:0;
 	box-shadow:none;
 	border:none;
 }
 
-/*導覽列RWD*/
-@media (min-width:768px) {
-.header-dark .navbar {
-	padding-top:.75rem;
-	padding-bottom:.75rem;
-}
-}
 
 /*導覽列品牌*/
 .header-dark .navbar .navbar-brand {
@@ -188,34 +181,6 @@ transition:border-bottom-color 0.3s;
 border-bottom:1px solid #ccc;
 }
 
-.header-dark .hero {
-margin-top:60px;
-}
-
-@media (min-width:768px) {
-.header-dark .hero {
-	margin-top:20px;
-}
-}
-
-.header-dark .hero h1 {
-	color:#fff;
-	font-family:'Bitter', serif;
-	font-size:40px;
-	margin-top:20px;
-	margin-bottom:80px;
-}
-
-@media (min-width:768px) {
-.header-dark .hero h1 {
-	margin-bottom:50px;
-	line-height:1.5;
-}
-}
-
-.header-dark .hero .embed-responsive iframe {
-	background-color: #666;
-}
 
 /*初始margin，英文大寫*/
 h3, p { 
@@ -241,17 +206,8 @@ letter-spacing: 2px;
 	position: relative;
 	max-width: 1100px;
 	margin: 0 auto;
+	text-align: center;
 	padding: 80px 20px;
-}
-
-@media (max-width:768px) {
-	.wrapper {
-		position: relative;
-		max-width: 1100px;
-		margin: 0 auto;
-		padding: 80px 20px;
-		padding-left: 150px 
-	}
 }
 
 /*中文酒名*/
@@ -388,7 +344,7 @@ padding: 20px;
 box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 background-size: cover;
 cursor: pointer;
-margin: 0 100px 60px 0;
+margin: 0 3em 3em 3em;
 }
 .card:before {
 content: '';
@@ -429,7 +385,7 @@ transform: translateX(0);
 }
 
 .page_btn_div {
-	width: 800px;
+	max-width: 800px;
 	margin:0 auto;
 }
 
@@ -959,7 +915,7 @@ ul._child_collapzion li span._title {
 	font-size: 0.3em;
 }
 
-i {
+#comment_icon, #bookmark_icon {
 	float: left;
 	margin-left: 21px;
 	color: #8a93a0;
