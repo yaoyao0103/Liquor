@@ -43,6 +43,11 @@
                         'url':'myRecipe.php',
                         'icon':'&#xea60;'
                     },
+                    {
+                        'label':'My Favorite',
+                        'url':'myFavorite.php',
+                        'icon':'&#xea60;'
+                    },
                     <?php
                     if($isAdmin){
                         echo "{

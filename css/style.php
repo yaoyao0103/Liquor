@@ -874,7 +874,7 @@ ul._child_collapzion li span._title {
 	}
 }
 
-#commentLikeBtn {
+.commentLikeBtn {
 	width: 8px;
 	float: right;
 	margin-right: 15px;
@@ -912,11 +912,19 @@ ul._child_collapzion li span._title {
 	width: 8px;
 }
 
+.redBackground{
+	background-color: red;
+}
+
+.whiteColor{
+	color: white;
+}
+
 #comment_total_like {
 	font-size: 0.3em;
 }
 
-#comment_icon, #bookmark_icon {
+.comment_icon, .bookmark_icon {
 	float: left;
 	margin-left: 21px;
 	color: #8a93a0;
