@@ -1,12 +1,5 @@
-<?php
-    /*use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require './PHPMailer/src/Exception.php';
-    require './PHPMailer/src/PHPMailer.php';
-    require './PHPMailer/src/SMTP.php';*/
-    
-    //error_reporting(0);
+<?php    
+    error_reporting(0);
     session_start();
     $userId = $_SESSION['userId'];
     $username = $_SESSION['username'];
@@ -29,12 +22,7 @@
 <body>
     <?php
         if($userID && $username){ // already logged in
-            if($isAdmin){ // is administrator
-                header("Location: admin.php");
-            }
-            else{ // is not administrator
-                header("Location: member.php");
-            }
+            header("Location: index.php");
         }
         else{ // not logged in
             if($_POST['registerBtn']){ // get form from activateBtn
@@ -71,9 +59,25 @@
                                             $numrows = mysqli_num_rows($query); // number of result
                                             if($numrows == 1){ // have one result
 
-                                                $errormsg = "You have been registered.";
-                                                $username = "";
-                                                $email = "";
+                                                $url = "https://diary-mail-node-app.herokuapp.com/mail";
+                                                $data = array('email' => $email, 'subject' => 'verify code', 'text' => $code);
+
+                                                // use key 'http' even if you send the request to https://...
+                                                $options = array(
+                                                    'http' => array(
+                                                        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                                                        'method'  => 'POST',
+                                                        'content' => http_build_query($data)
+                                                    )
+                                                );
+                                                $context  = stream_context_create($options);
+                                                $result = file_get_contents($url, false, $context);
+                                                if ($result === FALSE) { 
+                                                    $errormsg = "Something wrong!!";
+                                                }
+                                                else{
+                                                    $errormsg = "You have been registered.";
+                                                }
 
                                             }
                                             else

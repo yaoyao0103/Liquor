@@ -52,6 +52,25 @@
                                 $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'"); // query for matching username and password
                                 $numrows = mysqli_num_rows($query); // number of result
                                 if($numrows == 1){ // have one result
+                                    $url = "https://diary-mail-node-app.herokuapp.com/mail";
+                                    $data = array('email' => $email, 'subject' => 'new password', 'text' => $password);
+
+                                    // use key 'http' even if you send the request to https://...
+                                    $options = array(
+                                        'http' => array(
+                                            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                                            'method'  => 'POST',
+                                            'content' => http_build_query($data)
+                                        )
+                                    );
+                                    $context  = stream_context_create($options);
+                                    $result = file_get_contents($url, false, $context);
+                                    if ($result === FALSE) { 
+                                        $errormsg = "Something wrong!!";
+                                    }
+                                    else{
+                                        $errormsg = "New password has been sent to your email.";
+                                    }
                                     $errormsg = "Your password has been reset.";
                                 }
                                 else
@@ -94,14 +113,7 @@
                             <label for='email' class='label'>Email Address</label>
                             <input id='email' type='text' class='input' name='email'>
                         </div>
-                        <div class='group'>
-                            <label for='newPassword' class='label'>New Password</label>
-                            <input id='newPassword' type='password' class='input' name='newPassword'>
-                        </div> 
-                        <div class='group'>
-                            <label for='retypePassword' class='label'>Retype Password</label>
-                            <input id='retypePassword' type='password' class='input' name='retypePassword'>
-                        </div> 
+                        
                         <div class='group top-space'>
                             <input type='submit' class='button' value='Reset Password' name='resetBtn'>
                         </div>

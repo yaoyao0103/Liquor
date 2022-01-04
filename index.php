@@ -124,37 +124,6 @@
             </div>
             <div class = 'popup_comment'>
                 <div class = 'all_comment' id = 'all_comment'>
-                    <!-- <div id = 'comment_header'>Comment</div>
-                    <hr class = 'comment_header_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user1</div>
-                        <div class = 'comment_content'>It's awesome!!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user3</div>
-                        <div class = 'comment_content'>What's a god like recipe!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user4</div>
-                        <div class = 'comment_content'>Garbage!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user5</div>
-                        <div class = 'comment_content'>Wow!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user6</div>
-                        <div class = 'comment_content'>Yo!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user7</div>
-                        <div class = 'comment_content'>Good to drink!!</div>
-                    </div> -->
                 </div>
                 <?php
                     if($username && $userId) echo 
@@ -167,7 +136,7 @@
                 ?>
             </div>
             <?php
-                if($isAdmin) echo 
+                if($username && $userId) echo 
                     '<div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
                         <span class = "heart" id = "heart"></span>
                         <p id = "total_like">0</p>
@@ -322,19 +291,6 @@
                 heart.classList.remove('heratPop')
             });
 
-
-            /*
-            $('.step_wrapper').on('click','.step_box',function () {
-                $('.step_box').removeClass('selected');
-                $(this).addClass('selected')
-            });
-            */
-            /*
-            if($flag){
-                let element = document.getElementById("heart");
-                element.style.backgroundColor = "red";
-                document.getElementById("likeBtn").setAttribute("onclick", "");
-            }*/
         });
     </script>
 

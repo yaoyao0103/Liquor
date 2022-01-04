@@ -55,7 +55,7 @@
                                     header("Location: index.php");          
                                 }
                                 else
-                                    $errormsg = "You must activate your account to login.";
+                                    header("Location: activate.php");
                             }
                             else
                                 $errormsg = "You didn't enter the correct password.";

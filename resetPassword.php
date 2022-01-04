@@ -25,11 +25,46 @@
             header("Location: index.php");
         }
         else{ // not logged in
+            if($_POST['resetBtn']){ // get form from activateBtn
+
+                //get form info
+                $password = $_POST['password'];
+                $newPassword = $_POST['newPassword'];
+                $retypePassword = $_POST['confirmPassword'];
+
+                //make sure info provided
+                if($password){
+                    if($newPassword){
+                        if($retypePassword){
+                            if($newPassword == $retypePassword){
+                                $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
+
+                                // query for insert user info
+                                $flag = mysqli_query($conn, "UPDATE users SET password = '$newPassword' where username = '$username'");
+                                if($flag) // have one result
+                                    $errormsg = "Your password has been reset.";
+                                else
+                                    $errormsg = "An error has occurred. Your account was not created";
+                            }
+                            else
+                                $errormsg = "You must retype correct password.";
+                        }
+                        else
+                            $errormsg = "You must retype your new password.";
+                    }
+                    else
+                        $errormsg = "You must enter your new password";
+                }
+                else
+                    $errormsg = "You must enter correct password";
+            }
+            else
+                $errormsg = "";
             echo
             "<div>
                 <div class='header-dark'>";
 
-            include_once 'navigation_member.php';
+            include_once 'navigation.php';
 
             // form
             echo
@@ -37,6 +72,7 @@
                 <div class='userInfo-html'>
                     <div class='userInfo-form'>
                         <form class='reset-Password-htm' method='post' action='./resetPassword.php'>
+                            <div class='notice'>$errormsg</div>
                             <div class='group'>
                                 <label for='user' class='label'>Password</label>
                                 <input id='user' type='password' class='input' name='password'>

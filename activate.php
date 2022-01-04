@@ -22,12 +22,7 @@
 <body>
     <?php
         if($userID && $username){ // already logged in
-            if($isAdmin){ // is administrator
-                header("Location: admin.php");
-            }
-            else{ // is not administrator
-                header("Location: member.php");
-            }
+            header("Location: index.php");
         }
         else{ // not logged in
             $username = $_GET['user'];
@@ -86,7 +81,7 @@
             "<div>
                 <div class='header-dark'>";
 
-            include_once 'navigation_logged_in.php';
+            include_once 'navigation.php';
 
             // form
             echo
