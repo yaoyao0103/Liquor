@@ -74,21 +74,39 @@
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
-                //include_once 'ex_cards.php';
+            ?>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Original<i class="material-icons">&#xe98b;</i> </a>
+                    <a class="dropdown-item" href="#">Likes<i class="material-icons">&#xe98b;</i></a>
+                    <a class="dropdown-item" href="#">Favorites<i class="material-icons">&#xe98b;</i></a>
+                </div>
+            </div>
+            <?php
+                $favorite = "";
+                $keyword = "";
+                $$tag = "";
                 if($_GET['tag']){ // show by tags
                     $tag = $_GET['tag'];
-                    $sql = "select L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
+                    $sql = "SELECT L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
                 }
                 else if($_GET['search']){
                     $keyword = $_GET['search'];
-                    $sql = "select distinct L.* from liquors as L, tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
-                    $tag = "";
+                    $sql = "SELECT distinct L.* from liquors as L, tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
+                }
+                else if($_GET['sort']){
+                    $sortBy = $_GET['sort'];
+                    if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from liquors as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy"; 
+                    else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from liquors as L natural join likes as B GROUP BY L.id ORDER By $sortBy"; 
+                    else $sql = "SELECT * from liquors"; 
                 }
                 else{ // show all card
-                    $sql = "select * from liquors"; 
-                    $tag = "";
+                    $sql = "SELECT * from liquors"; 
                 }
-                generateCard($sql, $tag, $keyword);
+                generateCard($sql, $tag, $keyword, $sort);
             ?>
         </div>
 
