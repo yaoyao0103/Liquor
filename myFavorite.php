@@ -76,9 +76,8 @@
                 include_once 'navigation.php';
                 //include_once 'ex_cards.php';
                     $sql = "SELECT * from liquors natural join bookmarks where userID = $userId"; 
-                    $tag = "";
                     //echo $sql;
-                generateCard($sql, $tag, "");
+                generateCard($sql, "", "", "");
             ?>
         </div>
 
