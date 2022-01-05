@@ -949,4 +949,5 @@ ul._child_collapzion li span._title {
 	left: 0;
 	right: 0;
 	z-index: 100;
+	pointer-events: none;
 }
