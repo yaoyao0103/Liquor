@@ -109,52 +109,12 @@
             $key = "";
             if($search!=''){
                 $key = "search=" . $search . "&";
-                /*
-                if($page != 1) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?search=$search&page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
-                
-                for($i = 1; $i <= $total_pages; $i++){
-                    if($i!=$page){
-                        $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?search=$search&page=$i'\">".$i."</button>" ; //切換頁數button
-                    }
-                    else{
-                        $result .= "<button class = 'page_btn present_page' onclick=\"location.href='index.php?search=$search&page=$i'\">".$i."</button>" ; //當下頁面
-                    }
-                }
-                if($page != $total_pages) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?search=$search&page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
-               */
-                 
             }
             else if($tag!=''){
                 $key = "tag=" . $tag . "&";
-                /*
-                if($page != 1) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
-                
-                for($i = 1; $i <= $total_pages; $i++){
-                    if($i!=$page){
-                        $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //切換頁數button
-                    }
-                    else{
-                        $result .= "<button class = 'page_btn present_page' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //當下頁面
-                    }
-                }
-                if($page != $total_pages) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
-                */
             }
             else if($sort!=''){
-                $key = "sort=" . $sort . "&";
-                /*
-                if($page != 1) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button
-                
-                for($i = 1; $i <= $total_pages; $i++){
-                    if($i!=$page){
-                        $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //切換頁數button
-                    }
-                    else{
-                        $result .= "<button class = 'page_btn present_page' onclick=\"location.href='index.php?tag=$tag&page=$i'\">".$i."</button>" ; //當下頁面
-                    }
-                }
-                if($page != $total_pages) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?tag=$tag&page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
-                */
+                $key .= "sort=" . $sort . "&";
             }
             //else{
                 if($page != 1) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?" . $key . "&page=".($page-1)."'\"><<</button>"; // not in page 1 then show pervious page button

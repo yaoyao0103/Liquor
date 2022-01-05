@@ -69,8 +69,9 @@
 </head>
 
 <body>
-    <div id="preloader"></div>
-    <div class = "load-wrapper">
+    <!-- <div id="preloader"></div>
+    <div class = "load-wrapper"> -->
+    <div>
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
@@ -88,25 +89,25 @@
             <?php
                 $favorite = "";
                 $keyword = "";
-                $$tag = "";
+                $tag = "";
+                $sortBy = "";
                 if($_GET['tag']){ // show by tags
                     $tag = $_GET['tag'];
                     $sql = "SELECT L.* from liquors as L, tag as T where T.liquor_id = L.id and T.tag_name = '$tag'";
                 }
-                else if($_GET['search']){
+                else if($_GET['search']){  // show by search
                     $keyword = $_GET['search'];
                     $sql = "SELECT distinct L.* from liquors as L, tag as T, ingredient as I where T.liquor_id = L.id and I.liquor_id = L.id and (T.tag_name like '%$keyword%' or L.cname like '%$keyword%' or L.ename like '%$keyword%' or I.name like '%$keyword%')"; 
-                }
-                else if($_GET['sort']){
-                    $sortBy = $_GET['sort'];
-                    if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from liquors as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy"; 
-                    else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from liquors as L natural join likes as B GROUP BY L.id ORDER By $sortBy"; 
-                    else $sql = "SELECT * from liquors"; 
                 }
                 else{ // show all card
                     $sql = "SELECT * from liquors"; 
                 }
-                generateCard($sql, $tag, $keyword, $sort);
+                if($_GET['sort']){  // show above sorted result
+                    $sortBy = $_GET['sort'];
+                    if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from ($sql) as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy"; 
+                    else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from ($sql) as L natural join likes as B GROUP BY L.id ORDER By $sortBy"; 
+                }
+                generateCard($sql, $tag, $keyword, $sortBy);
             ?>
         </div>
 
@@ -276,7 +277,7 @@
     </script>
 
     <script>
-        let loader = document.getElementById("preloader");
+        /*let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
@@ -291,7 +292,7 @@
                 heart.classList.remove('heratPop')
             });
 
-        });
+        });*/
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
