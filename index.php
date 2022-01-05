@@ -76,14 +76,14 @@
             <?php
                 include_once 'navigation.php';
             ?>
-            <div class="dropdown">
+            <div class="dropdown" id ="sort-btn">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Original<i class="material-icons">&#xe98b;</i> </a>
-                    <a class="dropdown-item" href="#">Likes<i class="material-icons">&#xe98b;</i></a>
-                    <a class="dropdown-item" href="#">Favorites<i class="material-icons">&#xe98b;</i></a>
+                    <a class="dropdown-item" id = "origin_sort" href="">Original</a>
+                    <a class="dropdown-item" id = "like_sort" href="">Likes</a>
+                    <a class="dropdown-item" id = "favorite_sort" href="">Favorites</a>
                 </div>
             </div>
             <?php
@@ -293,6 +293,9 @@
             });
 
         });
+        document.getElementById("origin_sort").href = window.location.href;
+        document.getElementById("like_sort").href = window.location.href + "&sort=likes";
+        document.getElementById("favorite_sort").href = window.location.href + "&sort=favorites";
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

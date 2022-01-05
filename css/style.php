@@ -208,7 +208,7 @@ letter-spacing: 2px;
 	max-width: 1100px;
 	margin: 0 auto;
 	text-align: center;
-	padding: 80px 20px;
+	padding: 0px 20px;
 }
 
 /*中文酒名*/
@@ -715,6 +715,7 @@ transform: translateX(0);
 
 #btncollapzion {
 	margin-left: -50px;
+	pointer-events: none;
 }
 
 
@@ -741,6 +742,7 @@ a._collapz_parant {
     -moz-transition: -moz-transform .1s linear 0ms;
     transition: transform .1s linear 0ms;
     transform: rotate(44deg);
+	pointer-events: all;
 }
 a._collapz_parant._close {
     background-color: white;
@@ -762,6 +764,7 @@ ul._child_collapzion {
     width: 100%;
     overflow: auto;
     z-index: 10;
+	pointer-events: all;
     -webkit-transform: translate3d(0, -100%, 0);
     -moz-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
@@ -934,6 +937,22 @@ ul._child_collapzion li span._title {
 #bookmark_icon {
 	margin-top: 16px;
 	cursor: pointer;
+}
+
+#sort-btn {
+	position: relative;
+	height: 100px;
+	width: 100%;
+}
+
+.dropdown button{
+	position: absolute;
+	background:none;
+	border:none;
+	border-bottom:1px solid transparent;
+	border-radius:0;
+	left: 18%;
+	bottom: 20%;
 }
 
 
