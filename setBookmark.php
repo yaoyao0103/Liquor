@@ -7,9 +7,13 @@
     $sql = "INSERT INTO bookmarks VALUES($liquorId, $userId)";
     $flag = mysqli_query($conn, $sql);
     if($flag){
-        echo "success!";
+        $favoriteSql = "SELECT count(*) FROM bookmarks WHERE id = $liquorId";
+        $favoriteResult = mysqli_query($conn, $favoriteSql);
+        $favoriteResult = $favoriteResult->fetch_array();
+        $totalFavorite = intval($favoriteResult[0]);
+        echo $totalFavorite;
     }  
     else{
-        echo "error!";
+        echo false;
     }
 ?>

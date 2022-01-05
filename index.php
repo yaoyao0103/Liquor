@@ -71,7 +71,6 @@
 <body>
     <div id="preloader"></div>
     <div class = "load-wrapper">
-    <!-- <div> -->
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
@@ -142,10 +141,14 @@
                         <span class = "heart" id = "heart"></span>
                         <p id = "total_like">0</p>
                     </div>
-                    <div><i class = "material-icons comment_icon" id = "comment_icon">&#xe0ca;</i></div>
-                    <div onclick="setBookmarkColor()"><i class = "material-icons bookmark_icon" id = "bookmark_icon">&#xe98b;</i></div>
-                    ';
-                
+                    <div class = "comment_icon">
+                        <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
+                        <p id = "total_comment">0</p>
+                    </div>
+                    <div class = "bookmark_icon" id = "bookmark" onclick="setBookmarkColor()">
+                        <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
+                        <p id = "total_favorite">0</p>
+                    </div>';
             ?>
             
             
@@ -163,8 +166,7 @@
     <div id="btncollapzion" class="btn_collapzion"></div>
     
     <script>
-        function toggle(liquor, ingredients, tags, comments, totalLike){
-            console.log("totalLike: "  + totalLike);
+        function toggle(liquor, ingredients, tags, comments){
             $.ajax({
                 type: "POST",
                 url: "setLiquorIdSession.php",
@@ -210,8 +212,19 @@
             document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
             document.getElementById('all_comment').innerHTML = commentStr;
-            document.getElementById('total_like').innerHTML = totalLike;
-            
+            document.getElementById('total_like').innerHTML = liquor.totalLike;
+            document.getElementById('total_favorite').innerHTML = liquor.totalFavorite;
+            document.getElementById('total_comment').innerHTML = liquor.totalComment;
+            if(liquor.liked){
+                let element = document.getElementById("heart");
+                element.classList.add("redBackground");
+                document.getElementById("likeBtn").setAttribute("onclick", "");
+            }
+            if(liquor.favorited){
+                let element = document.getElementById("bookmark_icon");
+                element.style.color = "white";
+                document.getElementById("bookmark").setAttribute("onclick", "");
+            }
         }
 
         function unToggle(){
@@ -223,19 +236,23 @@
             element.classList.remove("redBackground");
             element = document.getElementById("bookmark_icon");
             element.style.color = "#8a93a0";
+            document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
+            document.getElementById("bookmark").setAttribute("onclick", "setBookmarkColor()");
         }
 
         function setLikeColor(){
             let element = document.getElementById("heart");
             element.classList.add("redBackground");
+            document.getElementById("likeBtn").setAttribute("onclick", "");
             $.ajax({
                 type: "POST",
                 url: "setLiquorLike.php",
                 success: function(data){
-                    console.log(data);
+                    if(data) document.getElementById("total_like").innerHTML = data;
+                    else alert("You have already liked");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }
@@ -250,10 +267,11 @@
                     commentId: id
                 },
                 success: function(data){
-                    console.log(data);
+                    if(data) console.log(data);
+                    else alert("You have already liked");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }
@@ -261,14 +279,16 @@
         function setBookmarkColor(){
             let element = document.getElementById("bookmark_icon");
             element.style.color = "white";
+            document.getElementById("bookmark").setAttribute("onclick", "");
             $.ajax({
                 type: "POST",
                 url: "setBookmark.php",
                 success: function(data){
-                    console.log(data);
+                    if(data) document.getElementById("total_favorite").innerHTML = data;
+                    else alert("You have already favorited");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }

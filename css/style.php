@@ -804,7 +804,8 @@ ul._child_collapzion li span._title {
 	float: left;
 	margin-top: 20px;
 	margin-left: 30px;
-	margin-right: 7px;
+	margin-right: 5px;
+	text-align: center;
 }
 
 .heart {
@@ -927,15 +928,25 @@ ul._child_collapzion li span._title {
 	font-size: 0.3em;
 }
 
+#total_comment, #total_favorite{
+	font-size: 0.3em;
+	color: #ddd;
+	margin-top: -4px;
+}
+
 .comment_icon, .bookmark_icon {
 	float: left;
-	margin-left: 21px;
+	margin-left: 22px;
 	color: #8a93a0;
 	margin-top: 17px;
+	text-align: center;
+}
+
+#comment_btn {
+	cursor: pointer;
 }
 
 #bookmark_icon {
-	margin-top: 16px;
 	cursor: pointer;
 }
 

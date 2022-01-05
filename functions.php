@@ -4,6 +4,8 @@
         return preg_split('/(?<!^)(?!$)/u', $str );  
     }*/
     function generateCard($sql, $tag, $search, $sort){
+        session_start();
+        $userId = $_SESSION['userId'];
         $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd"); // connect to DB
         mysqli_set_charset($conn,"utf8");
 
@@ -48,9 +50,6 @@
                     $tempTag[] = $row; 
                 $tagsJSON = json_encode($tempTag);
                 
-                $liquorJSON = json_encode($liquor);
-        
-                
                 $commentSql = "SELECT * FROM comments WHERE id = $id";
                 $commentResult = mysqli_query($conn, $commentSql);
                 $tempComment = [];
@@ -69,10 +68,34 @@
                 $likeResult = mysqli_query($conn, $likeSql);
                 $likeResult = $likeResult->fetch_array();
                 $totalLike = intval($likeResult[0]);
+                
+                $favoriteSql = "SELECT count(*) FROM bookmarks WHERE id = $id";
+                $favoriteResult = mysqli_query($conn, $favoriteSql);
+                $favoriteResult = $favoriteResult->fetch_array();
+                $totalFavorite = intval($favoriteResult[0]);
 
+                $commentSql = "SELECT count(*) FROM comments WHERE id = $id";
+                $commentResult = mysqli_query($conn, $commentSql);
+                $commentResult = $commentResult->fetch_array();
+                $totalComment = intval($commentResult[0]);
+
+                $likedSql = "SELECT 1 FROM likes WHERE id = $id and userId = '$userId' LIMIT 1";
+                $likedResult = mysqli_query($conn, $likedSql);
+                $liked = mysqli_num_rows($likedResult);
+
+                $favoritedSql = "SELECT 1 FROM bookmarks WHERE id = $id and userId = '$userId' LIMIT 1";
+                $favoritedResult = mysqli_query($conn, $favoritedSql);
+                $favorited = mysqli_num_rows($favoritedResult);
+
+                $liquor['totalLike'] = $totalLike;
+                $liquor['totalFavorite'] = $totalFavorite;
+                $liquor['totalComment'] = $totalComment;
+                $liquor['liked'] = $liked;
+                $liquor['favorited'] = $favorited;
+                $liquorJSON = json_encode($liquor);
                 
 
-                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON, $totalLike)'> 
+                $content_front = "<div class=\"card\" data-tilt data-tilt-max=\"10\" style=\"background-image: url($photoURL) \" onclick='toggle($liquorJSON, $ingredientsJSON, $tagsJSON, $commentJSON)'> 
                 <div class=\"card_content\" > 
                     <a href='#' class=\"play-button\"> 
                     <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 50 50\"> 
@@ -128,7 +151,6 @@
                     }
                 }
                 if($page != $total_pages) $result .= "<button class = 'page_btn' onclick=\"location.href='index.php?" . $key . "page=".($page+1)."'\">>></button>"; // not in the last page then show next page button
-               
             //}
             $result .= "</div>";
                 $result .= "</div>";

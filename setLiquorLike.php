@@ -7,9 +7,13 @@
     $sql = "INSERT INTO likes VALUES($liquorId, $userId)";
     $flag = mysqli_query($conn, $sql);
     if($flag){
-        echo "success!";
+        $likeSql = "SELECT count(*) FROM likes WHERE id = $liquorId";
+        $likeResult = mysqli_query($conn, $likeSql);
+        $likeResult = $likeResult->fetch_array();
+        $totalLike = intval($likeResult[0]);
+        echo $totalLike;
     }  
     else{
-        echo "error!";
+        echo false;
     }
 ?>
