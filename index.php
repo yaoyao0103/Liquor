@@ -293,9 +293,21 @@
             });
 
         });
-        document.getElementById("origin_sort").href = window.location.href;
-        document.getElementById("like_sort").href = window.location.href + "&sort=likes";
-        document.getElementById("favorite_sort").href = window.location.href + "&sort=favorites";
+        
+        let currentURL = new URL(window.location.href);
+        let params = currentURL.searchParams;
+        let front = currentURL.protocol  + "//" + currentURL.hostname + currentURL.pathname;
+        let origin_params = new URLSearchParams(currentURL.search);
+        let like_params = new URLSearchParams(currentURL.search);
+        let favorite_params = new URLSearchParams(currentURL.search);
+        origin_params.delete('sort');
+        like_params.set('sort', 'likes');
+        favorite_params.set('sort', 'favorites');
+        if(origin_params.toString()) document.getElementById("origin_sort").href = front + "?" + origin_params.toString();
+        else document.getElementById("origin_sort").href = front;
+        document.getElementById("like_sort").href = front + "?" + like_params.toString();
+        document.getElementById("favorite_sort").href = front + "?" + favorite_params.toString();
+        
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
