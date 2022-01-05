@@ -69,9 +69,9 @@
 </head>
 
 <body>
-    <!-- <div id="preloader"></div>
-    <div class = "load-wrapper"> -->
-    <div>
+    <div id="preloader"></div>
+    <div class = "load-wrapper">
+    <!-- <div> -->
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
@@ -277,7 +277,7 @@
     </script>
 
     <script>
-        /*let loader = document.getElementById("preloader");
+        let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
@@ -292,7 +292,7 @@
                 heart.classList.remove('heratPop')
             });
 
-        });*/
+        });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

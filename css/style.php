@@ -936,7 +936,7 @@ ul._child_collapzion li span._title {
 	cursor: pointer;
 }
 
-/*
+
 #preloader{
 	background: #000 url(../images/loader.gif) no-repeat center center;
 	background-size: 30%;
@@ -949,4 +949,4 @@ ul._child_collapzion li span._title {
 	left: 0;
 	right: 0;
 	z-index: 100;
-}*/
+}
