@@ -14,9 +14,9 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin page </title>
+    <title> Home page </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
@@ -29,15 +29,23 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Random Recipe',
+                    'url':'randomChoose.php',
+                    'icon':'&#xea60;'
+                    },
+                    {
+                    'label':'Recipe Filter',
+                    'url':'liquor_filter.php',
+                    'icon':'&#xea60;'
+                    },
+                    <?php
+                    if($userId && $username){
+                        echo "
+                    {
                     'label':'New Recipes',
                     'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
-                    /*{
-                    'label':'Edit Recipes',
-                    'url':'#',
-                    'icon':'&#xE873;'
-                    },*/
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
@@ -47,8 +55,9 @@
                         'label':'My Favorite',
                         'url':'myFavorite.php',
                         'icon':'&#xea60;'
-                    },
-                    <?php
+                    },";
+                    }
+                    
                     if($isAdmin){
                         echo "{
                             'label':'Manage Recipes',
@@ -74,6 +83,9 @@
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
+            ?>
+            <div class="dropdown" id ="sort-btn"></div>
+            <?php
                 $sql = "select * from new_liquors where isVerified = 0"; 
                 $tag = "";
                 generateNewCard($sql, $tag, "");

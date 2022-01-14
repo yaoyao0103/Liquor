@@ -32,15 +32,23 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Random Recipe',
+                    'url':'randomChoose.php',
+                    'icon':'&#xea60;'
+                    },
+                    {
+                    'label':'Recipe Filter',
+                    'url':'liquor_filter.php',
+                    'icon':'&#xea60;'
+                    },
+                    <?php
+                    if($userId && $username){
+                        echo "
+                    {
                     'label':'New Recipes',
                     'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
-                    /*{
-                    'label':'Edit Recipes',
-                    'url':'#',
-                    'icon':'&#xE873;'
-                    },*/
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
@@ -50,8 +58,9 @@
                         'label':'My Favorite',
                         'url':'myFavorite.php',
                         'icon':'&#xea60;'
-                    },
-                    <?php
+                    },";
+                    }
+                    
                     if($isAdmin){
                         echo "{
                             'label':'Manage Recipes',
@@ -77,6 +86,9 @@
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
+            ?>
+            <div class="dropdown" id ="sort-btn"></div>
+            <?php
                 //include_once 'ex_cards.php';
                     $sql = "select * from new_liquors where userID=$userId"; 
                     $tag = "";

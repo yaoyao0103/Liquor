@@ -966,6 +966,68 @@ ul._child_collapzion li span._title {
 	bottom: 20%;
 }
 
+#base-btn {
+	text-align: center;
+}
+
+
+.recipe-htm{
+	text-align: left;
+}
+
+.recipe-htm label{
+	color: #eee;
+}
+
+.recipe-htm .group{
+	position: relative;
+	width: 70%;
+	left: 16%;
+	margin-top: 30px;
+}
+
+.recipe-htm .ingredients{
+	position: relative;
+	width: 70%;
+	left: 16%;
+	margin-top: 30px;
+}
+
+.recipe-htm .button{
+	background:none;
+	border:none;
+	border-bottom:1px solid #aaa;
+	border-radius:0;
+	color: white;
+	margin-top: 8px;
+}
+
+.recipe-htm .button:hover{
+	border-bottom:1px solid #fff;
+	transition: 0.3s;
+}
+
+.dropdown select{
+	background:none;
+	border:none;
+	border-bottom:1px solid transparent;
+	border-radius:0;
+	color: white;
+	margin-left: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.dropdown option{
+	color: black;
+	cursor: pointer;
+}
+
+.space {
+	width: 100%;
+	height: 30px;
+}
+
 
 #preloader{
 	background: #000 url(../images/loader.gif) no-repeat center center;

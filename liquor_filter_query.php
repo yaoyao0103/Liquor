@@ -1,3 +1,4 @@
+
 <?php
     error_reporting(0);
     require('functions.php');
@@ -27,15 +28,23 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Random Recipe',
+                    'url':'randomChoose.php',
+                    'icon':'&#xea60;'
+                    },
+                    {
+                    'label':'Recipe Filter',
+                    'url':'liquor_filter.php',
+                    'icon':'&#xea60;'
+                    },
+                    <?php
+                    if($userId && $username){
+                        echo "
+                    {
                     'label':'New Recipes',
                     'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
-                    /*{
-                    'label':'Edit Recipes',
-                    'url':'#',
-                    'icon':'&#xE873;'
-                    },*/
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
@@ -45,8 +54,9 @@
                         'label':'My Favorite',
                         'url':'myFavorite.php',
                         'icon':'&#xea60;'
-                    },
-                    <?php
+                    },";
+                    }
+                    
                     if($isAdmin){
                         echo "{
                             'label':'Manage Recipes',
@@ -84,15 +94,17 @@
                 <div class='header-dark'>";
                     include_once 'navigation.php';
             ?>
-                <div class='userInfo-wrap'>
-                    <div class='userInfo-html'>
+                    <div class="dropdown" id ="base-btn">
                         <form class='recipe-htm' method='post' action='./liquor_filter_query.php'>
-                            <div class='group'>
-                                <label for='cname' class='label'>Selected Liquor: </label>
+                            <div class = "ingredients">
+                                <label for='cname' class='label' style = "font-weight: bold;">Selected Liquor: </label>
                                 <input type="hidden" name="selected" value="<?php echo $selected; ?>">
                                 <label class='label'>
                                     <?php echo $selected;?>
-                                </label><br>
+                                
+                                </label><br/>
+                                <div class = "space"></div>
+                                <label for='more-ingred' class='label' style = "font-weight: bold;">可搭配材料: </label><br/>
                                 
                                     <?php
                                         $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
@@ -125,9 +137,10 @@
                         </form>
 
                     </div>
+                    <div class = "space"></div>
                     
                     <?php
-                        //generateThreeCard($sql, '','','');//生成酒譜卡片 一次三張
+                        generateThreeCard($sql, '','','');//生成酒譜卡片 一次三張
                     ?>
                     <?php
             echo  
@@ -211,7 +224,6 @@
             popup.classList.toggle('active');
             document.getElementById('popup_cname').innerHTML = liquor.cname;
             document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
-
             let ingredientStr = "<ul>";
             for(let row of ingredients){
                 ingredientStr += "<li>"+ row.name + ": " + row.volume;
@@ -221,7 +233,6 @@
             for(let tag of tags){
                 tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
-
             let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
             for(let comment of comments){
                 commentStr += "<div class = 'comment'> \
@@ -251,7 +262,6 @@
                 document.getElementById("bookmark").setAttribute("onclick", "");
             }
         }
-
         function unToggle(){
             let blur = document.getElementById('blur');
             let popup = document.getElementById('popup');
@@ -264,7 +274,6 @@
             document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
             document.getElementById("bookmark").setAttribute("onclick", "setBookmarkColor()");
         }
-
         function setLikeColor(){
             let element = document.getElementById("heart");
             element.classList.add("redBackground");
@@ -281,7 +290,6 @@
                 }}
             );
         }
-
         function setCommentLikeColor(obj){
             let id = $(obj).attr("value");
             $(obj).children().first().addClass( "redBackground" );
@@ -300,7 +308,6 @@
                 }}
             );
         }
-
         function setBookmarkColor(){
             let element = document.getElementById("bookmark_icon");
             element.style.color = "white";
@@ -317,8 +324,6 @@
                 }}
             );
         }
-
-
     </script> -->
 
     <!-- <script>
@@ -326,7 +331,6 @@
         window.addEventListener("load", function(){
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
-
             //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
             const heart = document.getElementById('heart');
@@ -336,7 +340,6 @@
             likeBtn.addEventListener('mouseout',() => {
                 heart.classList.remove('heratPop')
             });
-
         });
         
         let currentURL = new URL(window.location.href);

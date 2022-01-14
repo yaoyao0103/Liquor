@@ -14,7 +14,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Home page </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
@@ -29,15 +29,23 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Random Recipe',
+                    'url':'randomChoose.php',
+                    'icon':'&#xea60;'
+                    },
+                    {
+                    'label':'Recipe Filter',
+                    'url':'liquor_filter.php',
+                    'icon':'&#xea60;'
+                    },
+                    <?php
+                    if($userId && $username){
+                        echo "
+                    {
                     'label':'New Recipes',
                     'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
-                    /*{
-                    'label':'Edit Recipes',
-                    'url':'#',
-                    'icon':'&#xE873;'
-                    },*/
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
@@ -47,8 +55,9 @@
                         'label':'My Favorite',
                         'url':'myFavorite.php',
                         'icon':'&#xea60;'
-                    },
-                    <?php
+                    },";
+                    }
+                    
                     if($isAdmin){
                         echo "{
                             'label':'Manage Recipes',
@@ -74,9 +83,12 @@
         <div class='header-dark' id='blur'>
             <?php
                 include_once 'navigation.php';
+            ?>
+            <div class="dropdown" id ="sort-btn">
+            </div>
+            <?php
                 //include_once 'ex_cards.php';
-                    $sql = "SELECT * from liquors natural join bookmarks where userID = $userId"; 
-                    //echo $sql;
+                $sql = "SELECT * from liquors natural join bookmarks where userID = $userId"; 
                 generateCard($sql, "", "", "");
             ?>
         </div>
@@ -95,37 +107,6 @@
             </div>
             <div class = 'popup_comment'>
                 <div class = 'all_comment' id = 'all_comment'>
-                    <!-- <div id = 'comment_header'>Comment</div>
-                    <hr class = 'comment_header_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user1</div>
-                        <div class = 'comment_content'>It's awesome!!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user3</div>
-                        <div class = 'comment_content'>What's a god like recipe!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user4</div>
-                        <div class = 'comment_content'>Garbage!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user5</div>
-                        <div class = 'comment_content'>Wow!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user6</div>
-                        <div class = 'comment_content'>Yo!!</div>
-                    </div>
-                    <hr class = 'comment_hr'/>
-                    <div class = 'comment'>
-                        <div class = 'comment_username'>user7</div>
-                        <div class = 'comment_content'>Good to drink!!</div>
-                    </div> -->
                 </div>
                 <?php
                     if($username && $userId) echo 
@@ -137,17 +118,20 @@
                     </div>';
                 ?>
             </div>
-            <?php
-                if($isAdmin) echo 
-                    '<div class = "likeBtn" id = "likeBtn" onclick="setLikeColor()">
-                        <span class = "heart" id = "heart"></span>
-                        <p id = "total_like">0</p>
-                    </div>
-                    <div><i class = "material-icons comment_icon" id = "comment_icon">&#xe0ca;</i></div>
-                    <div onclick="setBookmarkColor()"><i class = "material-icons bookmark_icon" id = "bookmark_icon">&#xe98b;</i></div>
-                    ';
                 
-            ?>
+            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
+                <span class = "heart" id = "heart"></span>
+                <p id = "total_like">0</p>
+            </div>
+            <div class = "comment_icon">
+                <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
+                <p id = "total_comment">0</p>
+            </div>
+            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
+                <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
+                <p id = "total_favorite">0</p>
+            </div>
+        
             
             
             
@@ -160,12 +144,11 @@
             </div>
         </div>
     </div>
-    
+
     <div id="btncollapzion" class="btn_collapzion"></div>
     
     <script>
-        function toggle(liquor, ingredients, tags, comments, totalLike){
-            console.log("totalLike: "  + totalLike);
+        function toggle(liquor, ingredients, tags, comments){
             $.ajax({
                 type: "POST",
                 url: "setLiquorIdSession.php",
@@ -211,8 +194,19 @@
             document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
             document.getElementById('all_comment').innerHTML = commentStr;
-            document.getElementById('total_like').innerHTML = totalLike;
-            
+            document.getElementById('total_like').innerHTML = liquor.totalLike;
+            document.getElementById('total_favorite').innerHTML = liquor.totalFavorite;
+            document.getElementById('total_comment').innerHTML = liquor.totalComment;
+            if(liquor.liked){
+                let element = document.getElementById("heart");
+                element.classList.add("redBackground");
+                document.getElementById("likeBtn").setAttribute("onclick", "");
+            }
+            if(liquor.favorited){
+                let element = document.getElementById("bookmark_icon");
+                element.style.color = "white";
+                document.getElementById("bookmark").setAttribute("onclick", "");
+            }
         }
 
         function unToggle(){
@@ -224,19 +218,23 @@
             element.classList.remove("redBackground");
             element = document.getElementById("bookmark_icon");
             element.style.color = "#8a93a0";
+            document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
+            document.getElementById("bookmark").setAttribute("onclick", "setBookmarkColor()");
         }
 
         function setLikeColor(){
             let element = document.getElementById("heart");
             element.classList.add("redBackground");
+            document.getElementById("likeBtn").setAttribute("onclick", "");
             $.ajax({
                 type: "POST",
                 url: "setLiquorLike.php",
                 success: function(data){
-                    console.log(data);
+                    if(data) document.getElementById("total_like").innerHTML = data;
+                    else alert("You have already liked");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }
@@ -251,10 +249,11 @@
                     commentId: id
                 },
                 success: function(data){
-                    console.log(data);
+                    if(data) console.log(data);
+                    else alert("You have already liked");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }
@@ -262,14 +261,16 @@
         function setBookmarkColor(){
             let element = document.getElementById("bookmark_icon");
             element.style.color = "white";
+            document.getElementById("bookmark").setAttribute("onclick", "");
             $.ajax({
                 type: "POST",
                 url: "setBookmark.php",
                 success: function(data){
-                    console.log(data);
+                    if(data) document.getElementById("total_favorite").innerHTML = data;
+                    else alert("You have already favorited");
                 },
                 error: function (error) {
-                    console.log('error; ' + eval(error));
+                    console.log(error);
                 }}
             );
         }
@@ -293,20 +294,22 @@
                 heart.classList.remove('heratPop')
             });
 
-
-            /*
-            $('.step_wrapper').on('click','.step_box',function () {
-                $('.step_box').removeClass('selected');
-                $(this).addClass('selected')
-            });
-            */
-            /*
-            if($flag){
-                let element = document.getElementById("heart");
-                element.style.backgroundColor = "red";
-                document.getElementById("likeBtn").setAttribute("onclick", "");
-            }*/
         });
+        
+        let currentURL = new URL(window.location.href);
+        let params = currentURL.searchParams;
+        let front = currentURL.protocol  + "//" + currentURL.hostname + currentURL.pathname;
+        let origin_params = new URLSearchParams(currentURL.search);
+        let like_params = new URLSearchParams(currentURL.search);
+        let favorite_params = new URLSearchParams(currentURL.search);
+        origin_params.delete('sort');
+        like_params.set('sort', 'likes');
+        favorite_params.set('sort', 'favorites');
+        if(origin_params.toString()) document.getElementById("origin_sort").href = front + "?" + origin_params.toString();
+        else document.getElementById("origin_sort").href = front;
+        document.getElementById("like_sort").href = front + "?" + like_params.toString();
+        document.getElementById("favorite_sort").href = front + "?" + favorite_params.toString();
+        
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

@@ -29,15 +29,23 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Random Recipe',
+                    'url':'randomChoose.php',
+                    'icon':'&#xea60;'
+                    },
+                    {
+                    'label':'Recipe Filter',
+                    'url':'liquor_filter.php',
+                    'icon':'&#xea60;'
+                    },
+                    <?php
+                    if($userId && $username){
+                        echo "
+                    {
                     'label':'New Recipes',
                     'url':'recipe_liquor.php',
                     'icon':'&#xE150;'
                     },
-                    /*{
-                    'label':'Edit Recipes',
-                    'url':'#',
-                    'icon':'&#xE873;'
-                    },*/
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
@@ -47,8 +55,9 @@
                         'label':'My Favorite',
                         'url':'myFavorite.php',
                         'icon':'&#xea60;'
-                    },
-                    <?php
+                    },";
+                    }
+                    
                     if($isAdmin){
                         echo "{
                             'label':'Manage Recipes',
@@ -103,8 +112,8 @@
                 }
                 if($_GET['sort']){  // show above sorted result
                     $sortBy = $_GET['sort'];
-                    if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from ($sql) as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy"; 
-                    else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from ($sql) as L natural join likes as B GROUP BY L.id ORDER By $sortBy"; 
+                    if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from ($sql) as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy DESC"; 
+                    else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from ($sql) as L natural join likes as B GROUP BY L.id ORDER By $sortBy DESC"; 
                 }
                 generateCard($sql, $tag, $keyword, $sortBy);
             ?>
