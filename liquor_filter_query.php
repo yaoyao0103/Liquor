@@ -90,8 +90,9 @@
             //     echo ass;
             // }
             echo
-            "<div>
-                <div class='header-dark'>";
+            "<div id='preloader'></div>
+                <div class = 'load-wrapper'>
+                    <div class='header-dark' id='blur'>";
                     include_once 'navigation.php';
             ?>
                     <div class="dropdown" id ="base-btn">
@@ -145,13 +146,12 @@
                     <?php
             echo  
                 "</div>
+            </div>
             </div>";
         // }
     ?>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="js/tilt.js"></script>
+
+
 	<div id='popup'>  
             <div class = 'popup_img'>
                 <img id = 'popup_img'>
@@ -202,8 +202,9 @@
             </div>
         </div>
     </div>
-	<div id="btncollapzion" class="btn_collapzion"></div>
-	<!-- <script>
+    
+    <div id="btncollapzion" class="btn_collapzion"></div>
+	<script>
         function toggle(liquor, ingredients, tags, comments){
             $.ajax({
                 type: "POST",
@@ -224,6 +225,7 @@
             popup.classList.toggle('active');
             document.getElementById('popup_cname').innerHTML = liquor.cname;
             document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
+
             let ingredientStr = "<ul>";
             for(let row of ingredients){
                 ingredientStr += "<li>"+ row.name + ": " + row.volume;
@@ -233,6 +235,7 @@
             for(let tag of tags){
                 tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
             }
+
             let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
             for(let comment of comments){
                 commentStr += "<div class = 'comment'> \
@@ -262,6 +265,7 @@
                 document.getElementById("bookmark").setAttribute("onclick", "");
             }
         }
+
         function unToggle(){
             let blur = document.getElementById('blur');
             let popup = document.getElementById('popup');
@@ -274,6 +278,7 @@
             document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
             document.getElementById("bookmark").setAttribute("onclick", "setBookmarkColor()");
         }
+
         function setLikeColor(){
             let element = document.getElementById("heart");
             element.classList.add("redBackground");
@@ -290,6 +295,7 @@
                 }}
             );
         }
+
         function setCommentLikeColor(obj){
             let id = $(obj).attr("value");
             $(obj).children().first().addClass( "redBackground" );
@@ -308,6 +314,7 @@
                 }}
             );
         }
+
         function setBookmarkColor(){
             let element = document.getElementById("bookmark_icon");
             element.style.color = "white";
@@ -324,13 +331,16 @@
                 }}
             );
         }
-    </script> -->
 
-    <!-- <script>
+
+    </script>
+
+    <script>
         let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
+
             //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
             const heart = document.getElementById('heart');
@@ -340,6 +350,7 @@
             likeBtn.addEventListener('mouseout',() => {
                 heart.classList.remove('heratPop')
             });
+
         });
         
         let currentURL = new URL(window.location.href);
@@ -356,8 +367,10 @@
         document.getElementById("like_sort").href = front + "?" + like_params.toString();
         document.getElementById("favorite_sort").href = front + "?" + favorite_params.toString();
         
-    </script> -->
-	
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="js/tilt.js"></script>
 </body>
 
 </html>
