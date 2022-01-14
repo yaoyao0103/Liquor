@@ -529,7 +529,7 @@ transform: translateX(0);
 	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 1100px;
+	width: 70%;
 	padding: 30px;
 	box-shadow: 0 5px 30px rgba(0,0,0,.30);
 	background: #222;
@@ -540,6 +540,10 @@ transform: translateX(0);
 	z-index: 5;
 }
 
+#popup_group {
+	height: 50%;
+}
+
 #popup.active {
 	visibility: visible;
 	opacity: 1;
@@ -548,19 +552,38 @@ transform: translateX(0);
 
 #popup .popup_img {
 	float: left;
-	width: 240px;
+	margin-right: 10px;
 }
 
 #popup .popup_content {
 	float: left;
-	width: 500px;
+	width: calc(100% - 550px);
 	height: 360px;
 	overflow-y: auto;
-	margin-left: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 15px;
 }
 
+@media (max-width:1260px) {
+	#popup .popup_content {
+		width: 30%;
+		float: left;
+	}
+}
+@media (max-width:1260px) {
+	#popup .popup_img {
+		width: 30%;
+	}
+}
+@media (max-width:1260px) {
+	#popup .popup_comment {
+		width: 30%;
+		float: left;
+	}
+}
 #popup_img {
-	height: 360px;
+	width:240px;
 }
 
 #popup_cname {
@@ -625,7 +648,7 @@ transform: translateX(0);
 	text-align: center;
 	background-color: gray;
 	text-decoration: none;
-	width: 50px;
+	width: 40px;
 	border-radius: 5px;
 	margin-left: 10px;
 	float: left;
@@ -637,9 +660,9 @@ transform: translateX(0);
 }
 
 #popup .popup_comment {
-	float: left;
+	float: right;
 	width: 250px;
-	margin-left: 30px;
+	margin-left: 10px;
 	height: 360px;
 }
 
@@ -647,6 +670,12 @@ transform: translateX(0);
 	height: 310px;
 	width: 250px;
 	overflow-y: auto;
+}
+
+@media (max-width:800px) {
+	#popup .all_comment {
+		width: 100%;
+	}
 }
 
 #popup .comment_input {
@@ -714,7 +743,7 @@ transform: translateX(0);
 }
 
 #btncollapzion {
-	margin-left: -50px;
+	margin-left: -2%;
 	pointer-events: none;
 }
 

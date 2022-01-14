@@ -121,6 +121,7 @@
 
         <!-- liquor information -->
         <div id='popup'>  
+            <div id = 'popup_group'>
             <div class = 'popup_img'>
                 <img id = 'popup_img'>
             </div>
@@ -144,6 +145,7 @@
                     </div>';
                 ?>
             </div>
+        </div>
                 
             <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
                 <span class = "heart" id = "heart"></span>
