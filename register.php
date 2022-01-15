@@ -76,7 +76,7 @@
                                                     $errormsg = "Something wrong!!";
                                                 }
                                                 else{
-                                                    $errormsg = "You have been registered.";
+                                                    $errormsg = "Activate code has been sent to your email.";
                                                 }
 
                                             }
