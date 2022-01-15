@@ -138,7 +138,7 @@
             // }
             
            
-            
+            $detail = "做法：".$detail;
             $conn = mysqli_connect("us-cdbr-east-04.cleardb.com", "be18b79a8458a8", "350744db", "heroku_54df87b96adc2fd");
             mysqli_set_charset($conn, "utf8");
             mysqli_query($conn,"INSERT INTO new_liquors  VALUES ('','$cname','$ename','$detail','$photoURL','$userId','0')");
@@ -166,7 +166,8 @@
                 $mysql = "INSERT INTO new_tag VALUES ('', '$id', '$tname', '0')";
                 $query = mysqli_query($conn, $mysql);
             }
-            
+            $mysql = "INSERT INTO new_tag VALUES ('', '$id', 'Personal', '0')";
+            $query = mysqli_query($conn,$mysql);
             ?>
             <script>console.log("success")</script>
             <?php
