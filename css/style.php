@@ -674,7 +674,7 @@ transform: translateX(0);
 	.popup_btn_group {
 		width: 100%;
 		margin-left: 10px;
-		margin-left: 15px;
+		margin-top: 15px;
 	}
 	.popup_icons {
 		width: 100%;
