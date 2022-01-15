@@ -115,7 +115,14 @@
                     if($sortBy == "favorites") $sql = "SELECT distinct L.*, count( B.userId ) as favorites from ($sql) as L natural join bookmarks as B GROUP BY L.id ORDER By $sortBy DESC"; 
                     else if($sortBy == "likes") $sql = "SELECT distinct L.*, count( B.userId ) as likes from ($sql) as L natural join likes as B GROUP BY L.id ORDER By $sortBy DESC"; 
                 }
-                generateCard($sql, $tag, $keyword, $sortBy);
+                if($tag=="Personal"){
+                    $sql = "SELECT L.* from new_liquors as L, new_tag as T where T.liquor_id = L.ID and T.tag_name = '$tag' and L.isVerified='1' ";
+                    
+                    generatePersonalCard($sql,$tag,$keyword,$sortBy);
+                }
+                else{
+                    generateCard($sql, $tag, $keyword, $sortBy);
+                }
             ?>
         </div>
 
@@ -128,7 +135,7 @@
                 <div class = 'popup_content'>
                     <div class = "popup_content_group">
                         <div id = 'popup_cname'></div>
-                        <div id = 'popup_ename'></div>
+                        <div id = 'popup_ename'></div><br/>
                         <div id = 'popup_ingredients'></div>
                         <div id = 'popup_detail'></div>
                         <div id = 'popup_tags'></div>

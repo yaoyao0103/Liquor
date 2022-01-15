@@ -543,7 +543,7 @@ transform: translateX(0);
 @media (max-width:925px) {
 	#popup{
 		position: absolute;
-		margin-top: 100px;
+		margin-top: 200px;
 	}
 }
 
@@ -596,28 +596,38 @@ transform: translateX(0);
 #popup_img {
 	width:100%;
 }
-
-
 #popup_cname {
 	margin-left: 15px;
 	margin-right: 10px;
 	margin-top: 3px;
 	float: left;
 	color: #FFE66F;
-	font-size: 20px;
+	font-size: 1.25em;
 	font-weight: bold;
 }
 
 #popup_ename {
 	margin-top: 6px;
 	color: #FFE66F;
-	font-size: 15px;
+	font-size: 1em;
 	font-weight: bold;
 	float: left;
 }
 
+@media (max-width:450px) {
+	#popup_ename {
+		margin-top: 6px;
+		color: #FFE66F;
+		font-size: 1em;
+		font-weight: bold;
+		float: none;
+	}
+}
+
 #popup_ingredients {
-	margin-top: 40px;
+	width: 100%;
+	position: relative;
+	margin-top: 15px;
 	color: #E0E0E0;
 	font-size: 15px;
 }
@@ -638,6 +648,12 @@ transform: translateX(0);
 	font-size: 10px;
 }
 
+@media (max-width:450px) {
+	#popup_tags {
+		margin-bottom: 10px;
+	}
+}
+
 #popup_detail span, #popup_tags span{
 	font-weight: bold; 
 	font-size: 15px;
@@ -655,6 +671,7 @@ transform: translateX(0);
 	float:right;
 	margin-top: 30px;
 	margin-left: 10px;
+	font-size: 3px;
 }
 
 
@@ -737,6 +754,7 @@ transform: translateX(0);
 	border-radius: 5px;
 	margin-left: 5px;
 	color: white;
+	font-size: 3px;
 }
 
 #comment_btn:hover{
@@ -878,7 +896,7 @@ ul._child_collapzion li span._title {
 #likeBtn {
 	width: 15px;
 	float: left;
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-left: 30px;
 	margin-right: 5px;
 	text-align: center;
@@ -1014,7 +1032,7 @@ ul._child_collapzion li span._title {
 	float: left;
 	margin-left: 22px;
 	color: #8a93a0;
-	margin-top: 17px;
+	margin-top: 12px;
 	text-align: center;
 }
 
