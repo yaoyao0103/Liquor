@@ -121,55 +121,57 @@
 
         <!-- liquor information -->
         <div id='popup'>  
-            <div id = 'popup_group'>
-            <div class = 'popup_img'>
-                <img id = 'popup_img'>
-            </div>
-            <div class = 'popup_content'>
-                <div id = 'popup_cname'></div>
-                <div id = 'popup_ename'></div>
-                <div id = 'popup_ingredients'></div>
-                <div id = 'popup_detail'></div>
-                <div id = 'popup_tags'></div>
-            </div>
-            <div class = 'popup_comment'>
-                <div class = 'all_comment' id = 'all_comment'>
+            <div id = 'popup_top_group'>
+                <div class = 'popup_img'>
+                    <img id = 'popup_img'>
                 </div>
-                <?php
-                    if($username && $userId) echo 
-                        '<div class = "comment_input">
-                        <form method = "POST" action = "./comment.php">
-                            <input type="text" id = "comment_text" name = "comment">
-                            <input type="submit" id = "comment_btn" name = "comment_btn" >
-                        </form>
-                    </div>';
-                ?>
+                <div class = 'popup_content'>
+                    <div class = "popup_content_group">
+                        <div id = 'popup_cname'></div>
+                        <div id = 'popup_ename'></div>
+                        <div id = 'popup_ingredients'></div>
+                        <div id = 'popup_detail'></div>
+                        <div id = 'popup_tags'></div>
+                    </div>
+                    <div class = "popup_bottom_group">
+                        <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
+                            <span class = "heart" id = "heart"></span>
+                            <p id = "total_like">0</p>
+                        </div>
+                        <div class = "comment_icon">
+                            <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
+                            <p id = "total_comment">0</p>
+                        </div>
+                        <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
+                            <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
+                            <p id = "total_favorite">0</p>
+                        </div>
+                    
+                        <div class = 'popup_btn_group'>
+                            <?php
+                                if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
+                                <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>";
+                            ?>
+                            <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'popup_comment'>
+                    <div class = 'all_comment' id = 'all_comment'>
+                    </div>
+                    <?php
+                        if($username && $userId) echo 
+                            '<div class = "comment_input">
+                            <form method = "POST" action = "./comment.php">
+                                <input type="text" id = "comment_text" name = "comment">
+                                <input type="submit" id = "comment_btn" name = "comment_btn" >
+                            </form>
+                        </div>';
+                    ?>
+                </div>
             </div>
-        </div>
                 
-            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
-                <span class = "heart" id = "heart"></span>
-                <p id = "total_like">0</p>
-            </div>
-            <div class = "comment_icon">
-                <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
-                <p id = "total_comment">0</p>
-            </div>
-            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
-                <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
-                <p id = "total_favorite">0</p>
-            </div>
-        
             
-            
-            
-            <div class = 'popup_btn_group'>
-                <?php
-                    if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
-                    <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>";
-                ?>
-                <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
-            </div>
         </div>
     </div>
     

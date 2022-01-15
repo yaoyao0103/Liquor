@@ -526,7 +526,7 @@ transform: translateX(0);
 
 #popup {
 	position: fixed;
-	top: 40%;
+	top: 45%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 70%;
@@ -540,8 +540,15 @@ transform: translateX(0);
 	z-index: 5;
 }
 
-#popup_group {
-	height: 50%;
+@media (max-width:925px) {
+	#popup{
+		position: absolute;
+		margin-top: 100px;
+	}
+}
+
+.popup_top_group,  .popup_bottom_group{
+	width: 100%;
 }
 
 #popup.active {
@@ -552,39 +559,44 @@ transform: translateX(0);
 
 #popup .popup_img {
 	float: left;
+	width: 240px;
 	margin-right: 10px;
 }
 
 #popup .popup_content {
 	float: left;
-	width: calc(100% - 550px);
+	width: calc(100% - 520px);
 	height: 360px;
-	overflow-y: auto;
-	margin-left: 10px;
 	margin-right: 10px;
-	margin-top: 15px;
+}
+
+#popup .popup_content_group{
+	overflow-y: auto;
 }
 
 @media (max-width:1260px) {
-	#popup .popup_content {
-		width: 30%;
-		float: left;
-	}
-}
-@media (max-width:1260px) {
 	#popup .popup_img {
-		width: 30%;
+		display: none;
 	}
 }
 @media (max-width:1260px) {
-	#popup .popup_comment {
-		width: 30%;
+	#popup .popup_content {
+		width: 55%;
 		float: left;
+		height: auto;
+	}
+}
+@media (max-width:925px) {
+	#popup .popup_content {
+		width: 100%;
+		float: left;
+		height: auto;
 	}
 }
 #popup_img {
-	width:240px;
+	width:100%;
 }
+
 
 #popup_cname {
 	margin-left: 15px;
@@ -640,8 +652,16 @@ transform: translateX(0);
 
 .popup_btn_group {
 	float:right;
-	margin-top: 20px;
+	margin-top: 30px;
 }
+
+@media (max-width:530px) {
+	.popup_btn_group {
+		float:none;
+		width: 100%;
+	}
+}
+
 
 .popup_btn {
 	position: relative;
@@ -662,24 +682,44 @@ transform: translateX(0);
 #popup .popup_comment {
 	float: right;
 	width: 250px;
-	margin-left: 10px;
 	height: 360px;
+	max-height: 360px;
+}
+
+@media (max-width:1260px) {
+	#popup .popup_comment {
+		width: 40%;
+		float: right;
+		height: auto;
+	}
+}
+@media (max-width:925px) {
+	#popup .popup_comment {
+		width: 100%;
+		float: left;
+		height: auto;
+		margin-top: 20px;
+	}
+}
+
+#popup .comment{
+	height: auto;
 }
 
 #popup .all_comment {
-	height: 310px;
-	width: 250px;
+	height: 90%;
+	width: 100%;
 	overflow-y: auto;
 }
 
-@media (max-width:800px) {
+@media (max-width:1260px) {
 	#popup .all_comment {
-		width: 100%;
+		height: 320px;
 	}
 }
 
 #popup .comment_input {
-	height: 30px;
+	height: 30%;
 	margin-top:20px;
 }
 
@@ -698,7 +738,7 @@ transform: translateX(0);
 }
 
 #comment_text{
-	width: 180px;
+	width: 75%;
 	background:none;
 	border:none;
 	border-bottom:1px solid #ccc;
