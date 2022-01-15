@@ -71,7 +71,6 @@
                                     else{
                                         $errormsg = "New password has been sent to your email.";
                                     }
-                                    $errormsg = "Your password has been reset.";
                                 }
                                 else
                                     $errormsg = "An error has ocurred and the password was not reset.";
