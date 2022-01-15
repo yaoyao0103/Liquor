@@ -624,14 +624,15 @@ transform: translateX(0);
 
 #popup_detail {
 	margin-left: 20px;
-	margin-top: 20px;
+	margin-top: 10px;
 	color: #E0E0E0;
 	font-size: 12px;
+	overflow-y: auto;
 }
 
 
 #popup_tags {
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-left: 20px;
 	color: #E0E0E0;
 	font-size: 10px;
@@ -653,14 +654,9 @@ transform: translateX(0);
 .popup_btn_group {
 	float:right;
 	margin-top: 30px;
+	margin-left: 10px;
 }
 
-@media (max-width:530px) {
-	.popup_btn_group {
-		float:none;
-		width: 100%;
-	}
-}
 
 
 .popup_btn {
@@ -672,6 +668,17 @@ transform: translateX(0);
 	border-radius: 5px;
 	margin-left: 10px;
 	float: left;
+}
+
+@media (max-width:534px) {
+	.popup_btn_group {
+		width: 100%;
+		margin-left: 10px;
+		margin-left: 15px;
+	}
+	.popup_icons {
+		width: 100%;
+	}
 }
 
 

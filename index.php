@@ -134,18 +134,21 @@
                         <div id = 'popup_tags'></div>
                     </div>
                     <div class = "popup_bottom_group">
-                        <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
-                            <span class = "heart" id = "heart"></span>
-                            <p id = "total_like">0</p>
+                        <div class = "popup_icons">
+                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
+                                <span class = "heart" id = "heart"></span>
+                                <p id = "total_like">0</p>
+                            </div>
+                            <div class = "comment_icon">
+                                <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
+                                <p id = "total_comment">0</p>
+                            </div>
+                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
+                                <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
+                                <p id = "total_favorite">0</p>
+                            </div>
                         </div>
-                        <div class = "comment_icon">
-                            <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
-                            <p id = "total_comment">0</p>
-                        </div>
-                        <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
-                            <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
-                            <p id = "total_favorite">0</p>
-                        </div>
+                        
                     
                         <div class = 'popup_btn_group'>
                             <?php
