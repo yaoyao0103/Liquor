@@ -105,6 +105,7 @@
             <div class='userInfo-html'>
                 <div class='userInfo-form'>
                     <form class='forgot-Password-htm' method='post' action='./forgotPassword.php'>
+                        <div class='notice'>$errormsg</div>
                         <div class='group'>
                             <label for='user' class='label'>Username</label>
                             <input id='user' type='text' class='input' name='username'>
