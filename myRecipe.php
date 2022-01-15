@@ -81,6 +81,11 @@
 </head>
 
 <body>
+    <?php
+        if(!($userId&&$username)){
+            header("Location: index.php");
+        }
+    ?>
     <div id="preloader"></div>
     <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
@@ -110,6 +115,7 @@
                         <div id = 'popup_ingredients'></div>
                         <div id = 'popup_detail'></div>
                         <div id = 'popup_tags'></div>
+                        <div id = 'popup_id' style = 'visibility:hidden;'></div>
                     </div>
                     <div class = "popup_bottom_group">
                         <div class = "popup_icons">
@@ -129,10 +135,8 @@
                         
                     
                         <div class = 'popup_btn_group'>
-                            <?php
-                                if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
-                                <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>";
-                            ?>
+                            <div id = 'popup_delete_btn' class = 'popup_btn' style='background-color:red;'><a href='#' onclick = 'deleteLiquor()'>Delete</a></div>
+                            <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'editLiquor()'>Edit</a></div>
                             <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
                         </div>
                     </div>
@@ -140,20 +144,14 @@
                 <div class = 'popup_comment'>
                     <div class = 'all_comment' id = 'all_comment'>
                     </div>
-                    <?php
-                        if($username && $userId) echo 
-                            '<div class = "comment_input">
-                            <form method = "POST" action = "./comment.php">
-                                <input type="text" id = "comment_text" name = "comment">
-                                <input type="submit" id = "comment_btn" name = "comment_btn" >
-                            </form>
-                        </div>';
-                    ?>
+                    <div class = "comment_input">
+                        <form method = "POST" action = "./comment.php">
+                            <input type="text" id = "comment_text" name = "comment">
+                            <input type="submit" id = "comment_btn" name = "comment_btn" >
+                        </form>
+                    </div>
                 </div>
             </div>
-                
-            
-        </div>
     </div>
     
     <div id="btncollapzion" class="btn_collapzion"></div>

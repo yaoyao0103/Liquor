@@ -422,6 +422,17 @@ transform: translateX(0);
 	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
+
+.userInfo-wrap1{
+	width:80%;
+	margin:auto;
+	max-width:525px;
+	min-height:1000px;
+    margin-top: 60px;
+	position:relative;
+	background:#222;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
 .userInfo-html{
 	width:100%;
 	height:100%;
@@ -615,12 +626,19 @@ transform: translateX(0);
 }
 
 @media (max-width:450px) {
+	#popup_cname {
+		width: 100%;
+		text-align: center;
+		margin-left: 0;
+	}
 	#popup_ename {
-		margin-top: 6px;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 6px;
 		color: #FFE66F;
 		font-size: 1em;
 		font-weight: bold;
-		float: none;
+		float: left;
 	}
 }
 
@@ -687,7 +705,7 @@ transform: translateX(0);
 	float: left;
 }
 
-@media (max-width:534px) {
+@media (max-width:400px) {
 	.popup_btn_group {
 		width: 100%;
 		margin-left: 10px;

@@ -78,7 +78,7 @@
                     
             include_once 'navigation.php';
         ?>
-            <div class='userInfo-wrap'>
+            <div class='userInfo-wrap1'>
                 <div class='userInfo-html'>
                     <div class='userInfo-form'>
                         <form class='recipe-htm' method='post' action='./updatePage.php?id=<?php echo $id?>'>
@@ -121,12 +121,12 @@
             echo  
                 "</div>
             </div>";
-            }
+        }
 ?>
 <script> function update(){
     let id = document.getElementById('updateLiquorId').innerHTML;
     location.href="updatePage.php?id="+id;}
-    </script>}
+    </script>
 </body>
 
 </html>

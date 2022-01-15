@@ -20,6 +20,11 @@
 </head>
 
 <body>
+    <?php
+        if(!($userId&&$username)){
+            header("Location: index.php");
+        }
+    ?>
     
 	<?php
         $errormsg = $_COOKIE['errormsg'];
@@ -40,7 +45,7 @@
 
             // form
             ?>
-            <div class='userInfo-wrap'>
+            <div class='userInfo-wrap1'>
                 <div class='userInfo-html'>
                     <div class='userInfo-form'>
                         <form class='recipe-htm' method='post' action='./successfullySubmit.php'>
@@ -80,7 +85,6 @@
             echo  
                 "</div>
             </div>";
-        // }
     ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

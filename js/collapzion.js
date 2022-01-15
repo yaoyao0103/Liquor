@@ -1,18 +1,3 @@
-/*
-
- ___      _ _                _                _     
-  / __\___ | | | __ _ _ __ ___(_) ___  _ __    (_)___ 
- / /  / _ \| | |/ _` | '_ \_  / |/ _ \| '_ \   | / __|
-/ /__| (_) | | | (_| | |_) / /| | (_) | | | |_ | \__ \
-\____/\___/|_|_|\__,_| .__/___|_|\___/|_| |_(_)/ |___/
-                     |_|                     |__/     
-
- Version: 1.0.0
-  Author: channa bandara
- Website:
-    Repo: http://github.com/channasmcs
-
- */
 (function($) {
     "use strict";
     $.fn.Collapzion = function(options) {

@@ -78,6 +78,11 @@
 </head>
 
 <body>
+    <?php
+        if(!($userId&&$username)){
+            header("Location: index.php");
+        }
+    ?>
     <div id="preloader"></div>
     <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
@@ -125,10 +130,6 @@
                         
                     
                         <div class = 'popup_btn_group'>
-                            <?php
-                                if($isAdmin) echo "<div id = 'popup_delete_btn' class = 'popup_btn'><a href='#' onclick = 'delete()'>Delete</a></div>
-                                <div id = 'popup_edit_btn' class = 'popup_btn'><a href='#' onclick = 'edit()'>Edit</a></div>";
-                            ?>
                             <div id = 'popup_close_btn' class = 'popup_btn'><a href='#' onclick = 'unToggle()'>Close</a></div>
                         </div>
                     </div>
@@ -147,9 +148,6 @@
                     ?>
                 </div>
             </div>
-                
-            
-        </div>
     </div>
 
     <div id="btncollapzion" class="btn_collapzion"></div>
