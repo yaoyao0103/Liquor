@@ -668,6 +668,7 @@ transform: translateX(0);
 	margin-top: 10px;
 	color: #E0E0E0;
 	font-size: 12px;
+	max-height: 77px;
 	overflow-y: auto;
 }
 
