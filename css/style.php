@@ -648,6 +648,8 @@ transform: translateX(0);
 	margin-top: 15px;
 	color: #E0E0E0;
 	font-size: 15px;
+	max-height: 135px;
+	overflow-y: auto;
 }
 
 #popup_detail {
