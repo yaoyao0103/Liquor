@@ -83,18 +83,18 @@
     $middle = "";
     if($userId && $username){ // already logged in
       if($isAdmin){ // is administrator
-        $middle = '<form class="form-inline mr-auto" target="_self">
+        $middle = '<form class="form-inline mr-auto" action = "index.php" target="_self">
         <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
     </form><span class="navbar-text"><a href="./resetPassword.php" class="login">Reset Password</a></span><a class="btn btn-light action-button" role="button" href="./logout.php">Logout</a>';
       }
       else{ // is not administrator
-          $middle = '<form class="form-inline mr-auto" target="_self">
+          $middle = '<form class="form-inline mr-auto" action = "index.php" target="_self">
           <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
       </form><span class="navbar-text"><a href="./resetPassword.php" class="login">Reset Password</a></span><a class="btn btn-light action-button" role="button" href="./logout.php">Logout</a>';
       }
   } // not logged in
   else{
-      $middle = '<form class="form-inline mr-auto" target="_self">
+      $middle = '<form class="form-inline mr-auto" action = "index.php" target="_self">
       <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
   </form><span class="navbar-text"><a href="./login.php" class="login">Log In</a></span><a class="btn btn-light action-button" role="button" href="./register.php">Sign Up</a>';
   }

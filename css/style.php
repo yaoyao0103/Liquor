@@ -130,6 +130,7 @@ body:before {
 	box-shadow:0 4px 8px rgba(0,0,0,.1);
 	background-color:#fff;
 	border-radius:2px;
+	animation:fadenum 0.3s 1;
 }
 
 /*dropdown item*/
@@ -142,6 +143,7 @@ body:before {
 /*dropdown item hover*/
 .header-dark .navbar .dropdown-menu .dropdown-item:focus, .header-dark .navbar .dropdown-menu .dropdown-item:hover {
 	background: #FFECEC;
+	transition: 0.3s;
 }
 
 
@@ -346,6 +348,7 @@ box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.
 background-size: cover;
 cursor: pointer;
 margin: 0 3em 3em 3em;
+animation:fadenum 2s 1;
 }
 .card:before {
 content: '';
@@ -354,6 +357,12 @@ height: 100%;
 width: 100%;
 position: absolute;
 background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+@keyframes fadenum{
+	0%{opacity: 0;}
+
+	100%{opacity: 1;}
 }
 
 
@@ -421,6 +430,7 @@ transform: translateX(0);
 	position:relative;
 	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	animation:fadenum 1.3s 1;
 }
 
 .userInfo-wrap1{
@@ -432,6 +442,7 @@ transform: translateX(0);
 	position:relative;
 	background:#222;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	animation:fadenum 1.3s 1;
 }
 .userInfo-html{
 	width:100%;
@@ -885,6 +896,7 @@ ul._child_collapzion {
     -webkit-transition: -webkit-transform .3s ease-in-out;
     -moz-transition: -moz-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
+	animation:fadenum 0.5s 1;
 }
 
 ul._child_collapzion li a._collapz_child {
