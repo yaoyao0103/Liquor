@@ -115,17 +115,20 @@
                     </div>
                     <div class = "popup_bottom_group">
                         <div class = "popup_icons">
-                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'"; ?>>
+                            <?php 
+                                if($userId&&$username) echo '
+                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick=\'setLikeColor()\'">
                                 <span class = "heart" id = "heart"></span>
                                 <p id = "total_like">0</p>
                             </div>
+                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick=\'setBookmarkColor()\'">
+                                <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
+                                <p id = "total_favorite">0</p>
+                            </div>';
+                            ?>
                             <div class = "comment_icon">
                                 <i class = "material-icons" id = "comment_icon">&#xe0ca;</i>
                                 <p id = "total_comment">0</p>
-                            </div>
-                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'"; ?>>
-                                <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
-                                <p id = "total_favorite">0</p>
                             </div>
                         </div>
                         
@@ -298,6 +301,14 @@
             });
             likeBtn.addEventListener('mouseout',() => {
                 heart.classList.remove('heratPop')
+            });
+            const bookmark_btn = document.getElementById('bookmark');
+            const bookmark = document.getElementById('bookmark_icon');
+            bookmark_btn.addEventListener('mousemove',() => {
+                bookmark.classList.add('bookmark_pop')
+            });
+            bookmark_btn.addEventListener('mouseout',() => {
+                bookmark.classList.remove('bookmark_pop')
             });
 
         });
