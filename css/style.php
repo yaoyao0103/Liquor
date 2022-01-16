@@ -1004,6 +1004,40 @@ ul._child_collapzion li span._title {
 	}
 }
 
+@keyframes pulse_comment {
+	0% {
+		transform: scale(1);
+	}
+
+	10% {
+		transform: scale(1.1);
+	}
+
+	20% {
+		transform:  scale(0.9);
+	}
+
+	30% {
+		transform:  scale(1.2);
+	}
+
+	40% {
+		transform:  scale(0.9);
+	}
+
+	50% {
+		transform:  scale(1.1);
+	}
+
+	60% {
+		transform:  scale(0.9);
+	}
+
+	70% {
+		transform: scale(1);
+	}
+}
+
 .commentLikeBtn {
 	width: 8px;
 	float: right;
@@ -1066,6 +1100,10 @@ ul._child_collapzion li span._title {
 	color: #8a93a0;
 	margin-top: 12px;
 	text-align: center;
+}
+
+.bookmark_pop{
+	animation: pulse_comment 1s linear infinite;
 }
 
 #comment_btn {

@@ -333,6 +333,15 @@
                 heart.classList.remove('heratPop')
             });
 
+            const bookmark_btn = document.getElementById('bookmark');
+            const bookmark = document.getElementById('bookmark_icon');
+            bookmark_btn.addEventListener('mousemove',() => {
+                bookmark.classList.add('bookmark_pop')
+            });
+            bookmark_btn.addEventListener('mouseout',() => {
+                bookmark.classList.remove('bookmark_pop')
+            });
+
         });
         
         let currentURL = new URL(window.location.href);
