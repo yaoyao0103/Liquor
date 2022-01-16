@@ -617,6 +617,7 @@ transform: translateX(0);
 }
 #popup_img {
 	width:100%;
+	max-height: 360px;
 }
 #popup_cname {
 	margin-left: 15px;
