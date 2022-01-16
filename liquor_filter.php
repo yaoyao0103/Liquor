@@ -25,9 +25,14 @@
 			$('#btncollapzion').Collapzion({
                 _child_attribute:[
                     {
+                    'label':'Report',
+                    'url':'https://docs.google.com/presentation/d/1aU7WgXoyAtvMXwCqQaGf0PyrA-4TvF4Bg7ZTkZgcCOw/edit#slide=id.gd1b45eafd5_0_6',
+                    'icon':'&#xf1c6;'
+                    },
+                    {
                     'label':'Random Recipe',
                     'url':'randomChoose.php',
-                    'icon':'&#xea60;'
+                    'icon':'&#xe043;'
                     },
                     {
                     'label':'Recipe Filter',
@@ -45,12 +50,12 @@
                     {
                         'label':'My Recipes',
                         'url':'myRecipe.php',
-                        'icon':'&#xea60;'
+                        'icon':'&#xe92c;'
                     },
                     {
                         'label':'My Favorite',
                         'url':'myFavorite.php',
-                        'icon':'&#xea60;'
+                        'icon':'&#xe87d;'
                     },";
                     }
                     
@@ -58,7 +63,7 @@
                         echo "{
                             'label':'Manage Recipes',
                             'url':'manage.php',
-                            'icon':'&#xea60;'
+                            'icon':'&#xe869;'
                             },";
                     }
                     ?>
