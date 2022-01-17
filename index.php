@@ -84,6 +84,12 @@
 
 <body>
     <div id="preloader"></div>
+    <script>
+        setTimeout(() => {
+            $("#preloader").fadeOut(1000);
+            $(".load-wrapper").fadeIn(1000);
+        }, 4000);
+    </script>
     <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
             <?php
@@ -324,8 +330,8 @@
 
     <script>
         window.addEventListener("load", function(){
-            $("#preloader").fadeOut(1000);
-            $(".load-wrapper").fadeIn(1000);
+            // $("#preloader").fadeOut(1000);
+            // $(".load-wrapper").fadeIn(1000);
             //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
             const heart = document.getElementById('heart');
