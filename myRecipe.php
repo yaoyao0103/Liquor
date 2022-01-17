@@ -93,10 +93,12 @@
     ?>
     <div id="preloader"></div>
     <script>
-        setTimeout(() => {
-            $("#preloader").fadeOut(1000);
-            $(".load-wrapper").fadeIn(1000);
-        }, 2500);
+        setInterval(() => {
+            if(document.getElementById("all_card")){
+                $("#preloader").fadeOut(1000);
+                $(".load-wrapper").fadeIn(1000);
+            }
+        }, 100);
     </script>
     <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
