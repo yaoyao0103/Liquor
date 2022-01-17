@@ -88,7 +88,7 @@
         setTimeout(() => {
             $("#preloader").fadeOut(1000);
             $(".load-wrapper").fadeIn(1000);
-        }, 4000);
+        }, 2500);
     </script>
     <div class = "load-wrapper">
         <div class='header-dark' id='blur'>
