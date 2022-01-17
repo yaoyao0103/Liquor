@@ -127,11 +127,11 @@
                     </div>
                     <div class = "popup_bottom_group">
                         <div class = "popup_icons">
-                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick=\'setLikeColor()\'" ?> >
+                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'" ?> >
                                 <span class = "heart" id = "heart"></span>
                                 <p id = "total_like">0</p>
                             </div>
-                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick=\'setBookmarkColor()\'" ?>>
+                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'" ?>>
                                 <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
                                 <p id = "total_favorite">0</p>
                             </div>
@@ -296,12 +296,141 @@
 
     </script>
 
+<script>
+        function toggle(liquor, ingredients, tags, comments){
+            $.ajax({
+                type: "POST",
+                url: "setLiquorIdSession.php",
+                data:{
+                    liquorId: liquor.id
+                },
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log('error; ' + eval(error));
+                }}
+            );
+            let blur = document.getElementById('blur');
+            blur.classList.toggle('active');
+            let popup = document.getElementById('popup');
+            popup.classList.toggle('active');
+            document.getElementById('popup_cname').innerHTML = liquor.cname;
+            document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
+
+            let ingredientStr = "<ul>";
+            for(let row of ingredients){
+                ingredientStr += "<li>"+ row.name + ": " + row.volume;
+            }
+            ingredientStr += "</ul>";
+            let tagStr = "";
+            for(let tag of tags){
+                tagStr += "<a href = 'index.php?tag=" + tag.tag_name +  "'>" + tag.tag_name.replace("-", "'") + "</a>"
+            }
+
+            let commentStr = "<div id = 'comment_header'>Comment</div><hr class = 'comment_header_hr'/>";
+            for(let comment of comments){
+                commentStr += "<div class = 'comment'> \
+                        <div class = 'comment_username'><span>" + comment.username + "</span><div class = 'commentLikeBtn' onclick='setCommentLikeColor(this)' value = " + comment.commentId + "> \
+                    <span class = 'commentHeart'></span> \
+                    <p id = 'comment_total_like'>" + comment.total_like + "</p></div></div> \
+                        <div class = 'comment_content'>" + comment.comment + "</div> \
+                    </div> \
+                    <hr class = 'comment_hr'/> ";
+            }
+            document.getElementById('popup_ingredients').innerHTML = ingredientStr;
+            document.getElementById('popup_detail').innerHTML = "<span>" + liquor.detail.substr(0,3) + "</span><br/>" + liquor.detail.substr(3);
+            document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
+            document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
+            document.getElementById('all_comment').innerHTML = commentStr;
+            document.getElementById('total_like').innerHTML = liquor.totalLike;
+            document.getElementById('total_favorite').innerHTML = liquor.totalFavorite;
+            document.getElementById('total_comment').innerHTML = liquor.totalComment;
+            if(liquor.liked){
+                let element = document.getElementById("heart");
+                element.classList.add("redBackground");
+                document.getElementById("likeBtn").setAttribute("onclick", "");
+            }
+            if(liquor.favorited){
+                let element = document.getElementById("bookmark_icon");
+                element.style.color = "white";
+                document.getElementById("bookmark").setAttribute("onclick", "");
+            }
+        }
+
+        function unToggle(){
+            let blur = document.getElementById('blur');
+            let popup = document.getElementById('popup');
+                blur.classList.toggle('active');
+                popup.classList.toggle('active');
+            let element = document.getElementById("heart");
+            element.classList.remove("redBackground");
+            element = document.getElementById("bookmark_icon");
+            element.style.color = "#8a93a0";
+            document.getElementById("likeBtn").setAttribute("onclick", "setLikeColor()");
+            document.getElementById("bookmark").setAttribute("onclick", "setBookmarkColor()");
+        }
+
+        function setLikeColor(){
+            let element = document.getElementById("heart");
+            element.classList.add("redBackground");
+            document.getElementById("likeBtn").setAttribute("onclick", "");
+            $.ajax({
+                type: "POST",
+                url: "setLiquorLike.php",
+                success: function(data){
+                    if(data) document.getElementById("total_like").innerHTML = data;
+                    else alert("You have already liked");
+                },
+                error: function (error) {
+                    console.log(error);
+                }}
+            );
+        }
+
+        function setCommentLikeColor(obj){
+            let id = $(obj).attr("value");
+            $(obj).children().first().addClass( "redBackground" );
+            $.ajax({
+                type: "POST",
+                url: "setCommentLike.php",
+                data:{
+                    commentId: id
+                },
+                success: function(data){
+                    if(data) console.log(data);
+                    else alert("You have already liked");
+                },
+                error: function (error) {
+                    console.log(error);
+                }}
+            );
+        }
+
+        function setBookmarkColor(){
+            let element = document.getElementById("bookmark_icon");
+            element.style.color = "white";
+            document.getElementById("bookmark").setAttribute("onclick", "");
+            $.ajax({
+                type: "POST",
+                url: "setBookmark.php",
+                success: function(data){
+                    if(data) document.getElementById("total_favorite").innerHTML = data;
+                    else alert("You have already favorited");
+                },
+                error: function (error) {
+                    console.log(error);
+                }}
+            );
+        }
+
+
+    </script>
+
     <script>
-        let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             // $("#preloader").fadeOut(1000);
             // $(".load-wrapper").fadeIn(1000);
-
             //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
             const heart = document.getElementById('heart');
@@ -311,6 +440,7 @@
             likeBtn.addEventListener('mouseout',() => {
                 heart.classList.remove('heratPop')
             });
+
             const bookmark_btn = document.getElementById('bookmark');
             const bookmark = document.getElementById('bookmark_icon');
             bookmark_btn.addEventListener('mousemove',() => {

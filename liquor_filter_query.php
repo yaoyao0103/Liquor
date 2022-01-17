@@ -180,11 +180,11 @@
                     </div>
                     <div class = "popup_bottom_group">
                         <div class = "popup_icons">
-                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick=\'setLikeColor()\'" ?> >
+                            <div class = "likeBtn" id = "likeBtn" <?php if($username && $userId) echo "onclick='setLikeColor()'" ?> >
                                 <span class = "heart" id = "heart"></span>
                                 <p id = "total_like">0</p>
                             </div>
-                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick=\'setBookmarkColor()\'" ?>>
+                            <div class = "bookmark_icon" id = "bookmark" <?php if($username && $userId) echo "onclick='setBookmarkColor()'" ?>>
                                 <i class = "material-icons" id = "bookmark_icon">&#xe98b;</i>
                                 <p id = "total_favorite">0</p>
                             </div>
@@ -349,11 +349,9 @@
     </script>
 
     <script>
-        let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             // $("#preloader").fadeOut(1000);
             // $(".load-wrapper").fadeIn(1000);
-
             //const likeBtn = document.getElementById('likeBtn');
             const likeBtn = document.getElementById('likeBtn');
             const heart = document.getElementById('heart');
@@ -372,7 +370,6 @@
             bookmark_btn.addEventListener('mouseout',() => {
                 bookmark.classList.remove('bookmark_pop')
             });
-            
 
         });
         
