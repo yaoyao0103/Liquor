@@ -243,9 +243,9 @@
             document.getElementById('popup_tags').innerHTML = "<span>Tags:</span><br/>  " + tagStr;
             document.getElementById('popup_img').setAttribute("src", liquor.photoURL);
             document.getElementById('all_comment').innerHTML = commentStr;
-            document.getElementById('total_like').innerHTML = liquor.totalLike;
-            document.getElementById('total_favorite').innerHTML = liquor.totalFavorite;
-            document.getElementById('total_comment').innerHTML = liquor.totalComment;
+            if(liquor.totalLike) document.getElementById('total_like').innerHTML = liquor.totalLike;
+            if(liquor.totalFavorite) document.getElementById('total_favorite').innerHTML = liquor.totalFavorite;
+            if(liquor.totalComment) document.getElementById('total_comment').innerHTML = liquor.totalComment;
             if(liquor.liked){
                 let element = document.getElementById("heart");
                 element.classList.add("redBackground");
