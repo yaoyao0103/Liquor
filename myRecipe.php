@@ -200,6 +200,7 @@
             popup.classList.toggle('active');
             document.getElementById('popup_cname').innerHTML = liquor.cname;
             document.getElementById('popup_ename').innerHTML = liquor.ename.replace("-", "'");
+            document.getElementById('popup_id').innerHTML = liquor.ID;
 
             let ingredientStr = "<ul>";
             for(let row of ingredients){
