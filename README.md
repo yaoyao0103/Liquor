@@ -1,1 +1,1 @@
-此為此平台為提供各種調酒的酒譜，透過爬蟲抓取各種酒譜資訊，並重新精美呈現於此平台上。額外提供了酒譜分類功能、會員制度。額外系統也提供了隨機酒譜功能提供給選擇困難者，另外也提供了食材篩選器來透過複選食材來篩選酒譜。
+This platform provides various mixology recipes. It uses crawlers to capture various wine recipe information and re-present it beautifully on this platform. It also provides wine list classification function and membership system. The additional system also provides a random wine recipe function for those who have difficulty choosing. It also provides an ingredient filter to filter wine recipes by selecting multiple ingredients.
