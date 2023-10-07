@@ -9,7 +9,7 @@ The design of this platform attaches great importance to the presentation of UI/
 ![image](https://github.com/yaoyao0103/Liquor/assets/76504560/25915f72-1184-4936-9ba6-335ff70ed81d)
 
 ### Recipe Information
-![image](https://github.com/yaoyao0103/Liquor/assets/76504560/2f66e23b-51cf-46f9-b422-b960fbe146d7)
+![image](https://github.com/yaoyao0103/Liquor/assets/76504560/b07cbcf6-c94b-416d-b5c9-b58af520bf92)
 
 ### Recipe Filter
 ![image](https://github.com/yaoyao0103/Liquor/assets/76504560/3063f769-1db5-4fb9-87ac-9e83379110f4)
