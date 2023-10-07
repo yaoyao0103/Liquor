@@ -6,13 +6,14 @@ The design of this platform attaches great importance to the presentation of UI/
 ## Demo
 
 ### Home Page
-![image](https://github.com/yaoyao0103/Liquor/assets/76504560/86b0ecae-ca16-4e55-ad2e-655e2a4a7dfa)
+![image](https://github.com/yaoyao0103/Liquor/assets/76504560/25915f72-1184-4936-9ba6-335ff70ed81d)
 
 ### Recipe Information
 ![image](https://github.com/yaoyao0103/Liquor/assets/76504560/2f66e23b-51cf-46f9-b422-b960fbe146d7)
 
 ### Recipe Filter
-![image](https://github.com/yaoyao0103/Liquor/assets/76504560/8c94f3e3-6aee-4939-96ab-570c5b31f2a3)
+![image](https://github.com/yaoyao0103/Liquor/assets/76504560/3063f769-1db5-4fb9-87ac-9e83379110f4)
+
 
 
 
